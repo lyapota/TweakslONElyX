@@ -12,6 +12,7 @@ package com.lyapota.peferences;
         import android.util.AttributeSet;
         import android.view.View;
         import android.widget.SeekBar;
+        import android.widget.TextView;
 
         import com.lyapota.tweakslonelyx.R;
 
@@ -25,6 +26,8 @@ public class SliderPreference extends DialogPreference {
     protected float mValue;
     protected int mSeekBarValue;
     protected CharSequence[] mSummaries;
+    TextView message;
+    SeekBar seekbar;
 
     /**
      * @param context
@@ -111,13 +114,37 @@ public class SliderPreference extends DialogPreference {
         }
     }
 
+    private CharSequence setMessageInternal() {
+        if (mSummaries != null && mSummaries.length > 0) {
+            float newValue = (float) mSeekBarValue / SEEKBAR_RESOLUTION;
+
+            int index = (int) (newValue * mSummaries.length);
+            index = Math.min(index, mSummaries.length - 1);
+
+            message.setText(mSummaries[index]);
+            newValue = (float) index / (mSummaries.length - 1);
+            int newSeekBarValue = (int) (newValue * SEEKBAR_RESOLUTION);
+            seekbar.setProgress(newSeekBarValue);
+
+            return mSummaries[index];
+        } else {
+            return message.getText();
+        }
+    }
+
     @Override
     protected View onCreateDialogView() {
         mSeekBarValue = (int) (mValue * SEEKBAR_RESOLUTION);
         View view = super.onCreateDialogView();
-        SeekBar seekbar = (SeekBar) view.findViewById(R.id.slider_preference_seekbar);
+
+        seekbar = (SeekBar) view.findViewById(R.id.slider_preference_seekbar);
         seekbar.setMax(SEEKBAR_RESOLUTION);
         seekbar.setProgress(mSeekBarValue);
+
+        message = (TextView) view.findViewById(android.R.id.message);
+        setDialogMessage(setMessageInternal());
+
+
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -132,6 +159,7 @@ public class SliderPreference extends DialogPreference {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
                     SliderPreference.this.mSeekBarValue = progress;
+                    SliderPreference.this.setMessageInternal();
                 }
             }
         });
