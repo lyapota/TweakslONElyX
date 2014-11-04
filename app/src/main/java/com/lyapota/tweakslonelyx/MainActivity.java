@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -21,11 +22,22 @@ import com.lyapota.util.Shell.ShellException;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private static final String PREF_THEME = "isDarkTheme";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Load the settings
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isDark = sp.getBoolean(PREF_THEME, false);
+
+        // set the theme according to the setting
+        if (isDark)
+            this.setTheme(R.style.AppThemeDark);
+        else
+            this.setTheme(R.style.AppThemeLight);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -44,17 +56,17 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-             .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+             .replace(R.id.container, PreferencesFragment.newInstance(position + 1))
              .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section_settings);
+                mTitle = getString(R.string.title_section_system);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section_display);
+                mTitle = getString(R.string.title_section_general);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section_kernel);
@@ -92,13 +104,21 @@ public class MainActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.settings_menu_item) {
-            return true;
-        } else if (id == R.id.about_menu_item) {
-            AboutDialog.showAbout(this);
+        switch (item.getItemId()) {
+            case R.id.theme_menu_item:
+                sp.edit().putBoolean(PREF_THEME, !sp.getBoolean(PREF_THEME, false)).apply();
+                Intent i = getBaseContext()
+                        .getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext()
+                                                   .getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                break;
+            case R.id.about_menu_item:
+                AboutDialog.showAbout(this);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

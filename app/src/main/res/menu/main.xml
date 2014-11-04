@@ -3,10 +3,10 @@
     <item android:id="@+id/apply_on_reboot_menu_item" android:title="@string/action_apply_on_reboot_off"
         android:icon="@drawable/btn_apply_on_reboot_off"
         android:showAsAction="withText|ifRoom" />
-    <item android:id="@+id/settings_menu_item" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/theme_menu_item" android:title="@string/action_settings"
+        android:orderInCategory="1" android:showAsAction="never" />
     <item android:id="@+id/about_menu_item"
         android:title="@string/colorpicker_menu_about"
-        android:orderInCategory="1"
+        android:orderInCategory="100"
         android:showAsAction="never" />
 </menu>

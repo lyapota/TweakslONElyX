@@ -14,36 +14,26 @@ import android.view.ViewGroup;
 
 import com.lyapota.peferences.DisplayGamma;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class PlaceholderFragment extends PreferenceFragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
+public class PreferencesFragment extends PreferenceFragment {
+
     private static final String ARG_SECTION_NUMBER = "section_number";
     private Context context;
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static PreferencesFragment newInstance(int sectionNumber) {
+        PreferencesFragment fragment = new PreferencesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PlaceholderFragment() {
+    public PreferencesFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         context = rootView.getContext();
 
         setupSimplePreferencesScreen();
@@ -58,33 +48,18 @@ public class PlaceholderFragment extends PreferenceFragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
-    /**
-     * Shows the simplified settings UI if the device configuration if the
-     * device configuration dictates that a simplified, single-pane UI should be
-     * shown.
-     */
     private void setupSimplePreferencesScreen() {
-        // In the simplified UI, fragments are not used at all and we instead
-        // use the older PreferenceActivity APIs.
+
         int section = this.getArguments().getInt(ARG_SECTION_NUMBER);
 
         if (section == 1) {
+            addPreferencesFromResource(R.xml.pref_system);
 
-            // Add 'general' preferences.
-            addPreferencesFromResource(R.xml.pref_general);
-
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            bindPreferenceSummaryToValue(findPreference("pref_recentapp_style"));
+            bindPreferenceSummaryToValue(findPreference("pref_dalvik_optimization"));
 
         } else if (section == 2) {
-
-            // Add 'notifications' preferences, and a corresponding header.
-/*            PreferenceCategory fakeHeader = new PreferenceCategory(context);
-            fakeHeader.setTitle(R.string.pref_header_notifications);
-            getPreferenceScreen().addPreference(fakeHeader);                  */
-            addPreferencesFromResource(R.xml.pref_notification);
-
-            bindPreferenceSummaryToValue(findPreference("dimmer_gamma_pref"));
+            addPreferencesFromResource(R.xml.pref_general);
 
         } else  if (section == 3) {
 
@@ -93,37 +68,28 @@ public class PlaceholderFragment extends PreferenceFragment {
             fakeHeader = new PreferenceCategory(context);
             fakeHeader.setTitle(R.string.pref_header_data_sync);
             getPreferenceScreen().addPreference(fakeHeader);                  */
-            addPreferencesFromResource(R.xml.pref_data_sync);
+            addPreferencesFromResource(R.xml.pref_kernel);
 
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+            bindPreferenceSummaryToValue(findPreference("pref_s2s"));
         }
     }
 
-    /**
-     * A preference value change listener that updates the preference's summary
-     * to reflect its new value.
-     */
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
 
             if (preference instanceof ListPreference) {
-                // For list preferences, look up the correct display value in
-                // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
 
-                // Set the summary to reflect the new value.
                 preference.setSummary(
                         index >= 0
                                 ? listPreference.getEntries()[index]
                                 : null);
 
             } else if (preference instanceof DisplayGamma) {
-                // For dimmer preferences, look up the correct display value
                 if (TextUtils.isEmpty(stringValue)) {
-                    // Empty values correspond to 'silent' (no ringtone).
                     preference.setSummary("Empty");
 
                 } else {
@@ -131,29 +97,15 @@ public class PlaceholderFragment extends PreferenceFragment {
               }
 
             } else {
-                // For all other preferences, set the summary to the value's
-                // simple string representation.
                 preference.setSummary(stringValue);
             }
             return true;
         }
     };
 
-    /**
-     * Binds a preference's summary to its value. More specifically, when the
-     * preference's value is changed, its summary (line of text below the
-     * preference title) is updated to reflect the value. The summary is also
-     * immediately updated upon calling this method. The exact display format is
-     * dependent on the type of preference.
-     *
-     * @see #sBindPreferenceSummaryToValueListener
-     */
     private static void bindPreferenceSummaryToValue(Preference preference) {
-        // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
-        // Trigger the listener immediately with the preference's
-        // current value.
         sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())

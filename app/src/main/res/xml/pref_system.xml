@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="pref_longpress_backkey"
+        android:title="@string/pref_title_longpress_backkey"
+        android:summary="@string/pref_description_longpress_backkey"
+        android:defaultValue="true" />
+
+    <ListPreference
+        android:key="pref_recentapp_style"
+        android:title="@string/pref_title_recentapp_style"
+        android:defaultValue="1"
+        android:entries="@array/pref_recentapp_style_titles"
+        android:entryValues="@array/pref_recentapp_style_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <ListPreference
+        android:key="pref_dalvik_optimization"
+        android:title="@string/pref_title_dalvik_optimization"
+        android:defaultValue="1"
+        android:entries="@array/pref_dalvik_optimization_titles"
+        android:entryValues="@array/pref_dalvik_optimization_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+</PreferenceScreen>

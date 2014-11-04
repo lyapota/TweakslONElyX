@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.lyapota.tweakslonelyx">
+
+    <ListPreference
+        android:key="pref_s2s"
+        android:title="@string/pref_title_s2s"
+        android:defaultValue="1"
+        android:entries="@array/pref_s2s_titles"
+        android:entryValues="@array/pref_s2s_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <CheckBoxPreference
+        android:key="pref_magnetic_cover"
+        android:title="@string/pref_title_magnetic_cover"
+        android:summary="@string/pref_description_magnetic_cover"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_fast_charge"
+        android:title="@string/pref_title_fast_charge"
+        android:summary="@string/pref_description_fast_charge"
+        android:defaultValue="false" />
+
+    <com.lyapota.peferences.SliderPreference
+        android:defaultValue="@string/slider_cpu_uv_default"
+        android:dialogMessage="@string/slider_cpu_uv_message"
+        android:key="cpu_uv_slider"
+        android:summary="@array/cpu_uv_summaries"
+        android:title="@string/cpu_uv_title" />
+
+    <com.lyapota.peferences.DisplayGamma
+        android:key="dimmer_gamma_pref"
+        android:title="@string/pref_title_dimmer" />
+
+    <com.lyapota.peferences.ColorPreference
+        android:key="dash_colorkey"
+        android:title="Preference Title"
+        android:summary="Preference summary"
+        android:defaultValue="@android:color/white"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        app:numColumns="5"
+        app:itemLayout="@layout/dash_grid_item_color"
+        />
+
+
+
+</PreferenceScreen>
