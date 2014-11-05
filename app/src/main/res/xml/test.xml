@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.lyapota.tweakslonelyx">
+
+    <com.lyapota.peferences.ColorPreference
+        android:key="dash_colorkey"
+        android:title="Preference Title"
+        android:summary="Preference summary"
+        android:defaultValue="@android:color/white"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        app:numColumns="5"
+        app:itemLayout="@layout/dash_grid_item_color"
+        />
+</PreferenceScreen>

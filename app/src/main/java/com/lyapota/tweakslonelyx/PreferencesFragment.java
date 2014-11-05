@@ -71,6 +71,9 @@ public class PreferencesFragment extends PreferenceFragment {
             addPreferencesFromResource(R.xml.pref_kernel);
 
             bindPreferenceSummaryToValue(findPreference("pref_s2s"));
+            bindPreferenceSummaryToValue(findPreference("pref_cpu_oc"));
+            bindPreferenceSummaryToValue(findPreference("pref_edp"));
+
         }
     }
 

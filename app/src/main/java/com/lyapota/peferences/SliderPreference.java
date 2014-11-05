@@ -26,6 +26,7 @@ public class SliderPreference extends DialogPreference {
     protected float mValue;
     protected int mSeekBarValue;
     protected CharSequence[] mSummaries;
+    protected int index;
     TextView message;
     SeekBar seekbar;
 
@@ -72,7 +73,7 @@ public class SliderPreference extends DialogPreference {
     @Override
     public CharSequence getSummary() {
         if (mSummaries != null && mSummaries.length > 0) {
-            int index = (int) (mValue * mSummaries.length);
+            index = (int) (mValue * mSummaries.length);
             index = Math.min(index, mSummaries.length - 1);
             return mSummaries[index];
         } else {
@@ -103,6 +104,10 @@ public class SliderPreference extends DialogPreference {
         return mValue;
     }
 
+    public float getIndex() {
+        return index;
+    }
+
     public void setValue(float value) {
         value = Math.max(0, Math.min(value, 1)); // clamp to [0, 1]
         if (shouldPersist()) {
@@ -118,7 +123,7 @@ public class SliderPreference extends DialogPreference {
         if (mSummaries != null && mSummaries.length > 0) {
             float newValue = (float) mSeekBarValue / SEEKBAR_RESOLUTION;
 
-            int index = (int) (newValue * mSummaries.length);
+            index = (int) (newValue * mSummaries.length);
             index = Math.min(index, mSummaries.length - 1);
 
             message.setText(mSummaries[index]);

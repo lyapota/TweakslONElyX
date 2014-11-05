@@ -19,8 +19,6 @@
 
     <string name="pref_title_dalvik_optimization">Dalvik optimization</string>
 
-    <string name="pref_title_dimmer">Dimmer</string>
-
     <string name="pref_title_recentapp_style">Recent apps style</string>
 
     <string name="pref_title_allow_prism_landscape">Prism landscape</string>
@@ -49,6 +47,19 @@
     <string name="cpu_uv_title">Addition CPU voltage</string>
     <string name="slider_cpu_uv_message">Addition CPU voltage with kernel init.</string>
 
+    <string name="pref_title_cpu_oc">HW limit max CPU freq</string>
+
+    <string name="pref_title_edp">EDP Limit CPU</string>
+
+    <string name="pref_title_high_perf_mode">High perf mode</string>
+    <string name="pref_description_high_perf_mode">Support configuration with Class AB amplifier for headphones</string>
+
+    <item name="pref_dimmer_default" format="float" type="string">1.0</item>
+    <string name="dimmer_title">Dimmer mod</string>
+    <string name="pref_dimmer_message">Set custom backlight dimmer values</string>
+
+    <string name="pref_title_color_cal">LCD Color control</string>
+
     <string name="auto_brightness_reset_button">Reset</string>
     <string name="gamma_tuning_control_set_header"><![CDATA[Group <xliff:g id=\"index\">%d</xliff:g>]]></string>
     <string name="color_red_title">Red</string>
@@ -66,5 +77,15 @@
         <a href="http://forum.xda-developers.com/member.php?u=1148003">By lyapota (XDA member)</a><br><br>
 
     ]]></string>
+
+    <string name="pref_title_hotplug">CPU Hotplug</string>
+    <string name="pref_description_hotplug">Change CPU Hotplug algorithm</string>
+    <string name="summary_current">Current</string>
+    <string name="summary_disabled">Disabled</string>
+    <string name="pref_title_hotplug_mpdec">MPDecision</string>
+    <string name="pref_title_hotplug_cpuquiet">CPUQuiet</string>
+    <string name="pref_hotplug_category">Hotplugs</string>
+    <string name="pref_title_hotplug_intelli">Intelli</string>
+    <string name="pref_title_hotplug_mako">Mako</string>
 
 </resources>

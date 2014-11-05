@@ -34,6 +34,62 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="cpu_uv_summaries">
+        <item>-25 mV</item>
+        <item>-20 mV</item>
+        <item>-15 mV</item>
+        <item>-10 mV</item>
+        <item>0 mV</item>
+        <item>+10 mV</item>
+        <item>+15 mV</item>
+        <item>+20 mV</item>
+        <item>+25 mV</item>
+    </string-array>
+
+    <string-array name="pref_cpu_oc_titles">
+        <item>hardware</item>
+        <item>1.96 GHz</item>
+        <item>2.26 GHz</item>
+        <item>2.45 GHz</item>
+        <item>2.57 GHz</item>
+        <item>2.64 GHz</item>
+        <item>2.73 GHz</item>
+        <item>2.80 GHz</item>
+    </string-array>
+
+    <string-array name="pref_cpu_oc_values">
+        <item>0</item>
+        <item>1958400</item>
+        <item>2265600</item>
+        <item>2457600</item>
+        <item>2572800</item>
+        <item>2649600</item>
+        <item>2726400</item>
+        <item>2803200</item>
+    </string-array>
+
+    <string-array name="pref_edp_titles">
+        <item>OFF</item>
+        <item>5 consecutive queries</item>
+        <item>10 consecutive queries</item>
+        <item>15 consecutive queries</item>
+        <item>20 consecutive queries</item>
+    </string-array>
+
+    <string-array name="pref_edp_values">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <string-array name="dimmer_summaries">
+        <item>(1, 35, 130)</item>
+        <item>(1, 45, 175)</item>
+        <item>stock</item>
+    </string-array>
+
     <string-array name="default_color_choice_values" translatable="false">
         <item>#33b5e5</item>
         <item>#aa66cc</item>
@@ -55,18 +111,6 @@
     <string-array name="homescreen_color_choice_values" translatable="false">
         <item>#ffffff</item>
         <item>#000000</item>
-    </string-array>
-
-    <string-array name="cpu_uv_summaries">
-        <item>-25 mV</item>
-        <item>-20 mV</item>
-        <item>-15 mV</item>
-        <item>-10 mV</item>
-        <item>0 mV</item>
-        <item>+10 mV</item>
-        <item>+15 mV</item>
-        <item>+20 mV</item>
-        <item>+25 mV</item>
     </string-array>
 
     <string-array name="gamma_descriptors" />

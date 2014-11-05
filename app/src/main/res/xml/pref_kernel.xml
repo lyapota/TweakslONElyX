@@ -1,5 +1,4 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.lyapota.tweakslonelyx">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
         android:key="pref_s2s"
@@ -25,25 +24,85 @@
     <com.lyapota.peferences.SliderPreference
         android:defaultValue="@string/slider_cpu_uv_default"
         android:dialogMessage="@string/slider_cpu_uv_message"
-        android:key="cpu_uv_slider"
+        android:key="pref_cpu_uv"
         android:summary="@array/cpu_uv_summaries"
         android:title="@string/cpu_uv_title" />
 
-    <com.lyapota.peferences.DisplayGamma
-        android:key="dimmer_gamma_pref"
-        android:title="@string/pref_title_dimmer" />
-
-    <com.lyapota.peferences.ColorPreference
-        android:key="dash_colorkey"
-        android:title="Preference Title"
-        android:summary="Preference summary"
-        android:defaultValue="@android:color/white"
+    <ListPreference
+        android:key="pref_cpu_oc"
+        android:title="@string/pref_title_cpu_oc"
+        android:defaultValue="0"
+        android:entries="@array/pref_cpu_oc_titles"
+        android:entryValues="@array/pref_cpu_oc_values"
         android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        app:numColumns="5"
-        app:itemLayout="@layout/dash_grid_item_color"
-        />
+        android:positiveButtonText="@null" />
 
+    <ListPreference
+        android:key="pref_edp"
+        android:title="@string/pref_title_edp"
+        android:defaultValue="0"
+        android:entries="@array/pref_edp_titles"
+        android:entryValues="@array/pref_edp_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
 
+    <CheckBoxPreference
+        android:key="pref_high_perf_mode"
+        android:title="@string/pref_title_high_perf_mode"
+        android:summary="@string/pref_description_high_perf_mode"
+        android:defaultValue="false" />
+
+    <com.lyapota.peferences.SliderPreference
+        android:defaultValue="@string/pref_dimmer_default"
+        android:dialogMessage="@string/pref_dimmer_message"
+        android:key="pref_dimmer"
+        android:summary="@array/dimmer_summaries"
+        android:title="@string/dimmer_title" />
+
+    <com.lyapota.peferences.DisplayGamma
+        android:key="pref_color_cal"
+        android:title="@string/pref_title_color_cal" />
+
+    <PreferenceCategory android:title="@string/pref_hotplug_category">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_hotplug"
+            android:summary="@string/pref_description_hotplug"
+            android:title="@string/pref_title_hotplug" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_hotplug"
+            android:key="pref_hotplug_mpdec"
+            android:summaryOff="@string/summary_disabled"
+            android:summaryOn="@string/summary_current"
+            android:title="@string/pref_title_hotplug_mpdec" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_hotplug"
+            android:key="pref_hotplug_cpuquiet"
+            android:summaryOff="@string/summary_disabled"
+            android:summaryOn="@string/summary_current"
+            android:title="@string/pref_title_hotplug_cpuquiet" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_hotplug"
+            android:key="pref_hotplug_intelli"
+            android:summaryOff="@string/summary_disabled"
+            android:summaryOn="@string/summary_current"
+            android:title="@string/pref_title_hotplug_intelli" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_hotplug"
+            android:key="pref_hotplug_mako"
+            android:summaryOff="@string/summary_disabled"
+            android:summaryOn="@string/summary_current"
+            android:title="@string/pref_title_hotplug_mako" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
