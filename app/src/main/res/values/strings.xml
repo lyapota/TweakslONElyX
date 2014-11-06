@@ -59,8 +59,7 @@
     <string name="pref_dimmer_message">Set custom backlight dimmer values</string>
 
     <string name="pref_title_color_cal">LCD Color control</string>
-
-    <string name="auto_brightness_reset_button">Reset</string>
+    <string name="reset_button">Reset</string>
     <string name="gamma_tuning_control_set_header"><![CDATA[Group <xliff:g id=\"index\">%d</xliff:g>]]></string>
     <string name="color_red_title">Red</string>
     <string name="color_green_title">Green</string>
@@ -87,5 +86,13 @@
     <string name="pref_hotplug_category">Hotplugs</string>
     <string name="pref_title_hotplug_intelli">Intelli</string>
     <string name="pref_title_hotplug_mako">Mako</string>
+
+    <string name="headphone_title">HeadPhone</string>
+    <string name="speaker_title">Speaker</string>
+    <string name="microphone_title">Microphone</string>
+    <string name="camera_microphone_title">Camera microphone</string>
+    <string name="gun_tuning_control_set_header"><![CDATA[Group <xliff:g id=\"index\">%d</xliff:g>]]></string>
+    <string name="pref_title_gun_control">Audio Gun control</string>
+    <string name="pref_audio_category">Audio</string>
 
 </resources>

@@ -46,12 +46,6 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
-    <CheckBoxPreference
-        android:key="pref_high_perf_mode"
-        android:title="@string/pref_title_high_perf_mode"
-        android:summary="@string/pref_description_high_perf_mode"
-        android:defaultValue="false" />
-
     <com.lyapota.peferences.SliderPreference
         android:defaultValue="@string/pref_dimmer_default"
         android:dialogMessage="@string/pref_dimmer_message"
@@ -62,6 +56,20 @@
     <com.lyapota.peferences.DisplayGamma
         android:key="pref_color_cal"
         android:title="@string/pref_title_color_cal" />
+
+    <PreferenceCategory android:title="@string/pref_audio_category">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_high_perf_mode"
+            android:summary="@string/pref_description_high_perf_mode"
+            android:title="@string/pref_title_high_perf_mode" />
+
+        <com.lyapota.peferences.DisplayGun
+            android:key="pref_gun_control"
+            android:title="@string/pref_title_gun_control" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_hotplug_category">
 
