@@ -8,6 +8,7 @@ package com.lyapota.peferences;
         import android.os.Parcel;
         import android.os.Parcelable;
         import android.preference.DialogPreference;
+        import android.support.annotation.NonNull;
         import android.text.TextUtils;
         import android.util.AttributeSet;
         import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ package com.lyapota.peferences;
         import com.lyapota.util.GunCorrector;
 
 public class DisplayGun extends DialogPreference {
-    private static final String TAG = "GunsCalibration";
 
     private static final int[] BAR_GUNS = new int[] {
             R.string.headphone_title,
@@ -64,7 +64,7 @@ public class DisplayGun extends DialogPreference {
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         super.onBindDialogView(view);
 
         final ViewGroup container = (ViewGroup) view.findViewById(R.id.gun_container);
@@ -229,7 +229,7 @@ public class DisplayGun extends DialogPreference {
         }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
             super.writeToParcel(dest, flags);
             dest.writeInt(controlCount);
             dest.writeStringArray(originalGuns);
@@ -254,7 +254,6 @@ public class DisplayGun extends DialogPreference {
     private class GunSeekBar implements SeekBar.OnSeekBarChangeListener {
         private int mControlIndex;
         private int mGunIndex;
-        private int mOriginal;
         private int mMin;
         private SeekBar mSeekBar;
         private TextView mValue;

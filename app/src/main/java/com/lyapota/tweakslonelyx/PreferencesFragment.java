@@ -5,18 +5,19 @@ import android.content.Context;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
+import android.preference.SwitchPreference;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lyapota.peferences.DisplayGamma;
-
 public class PreferencesFragment extends PreferenceFragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private static boolean in_swith_state = false;
     private Context context;
 
     public static PreferencesFragment newInstance(int sectionNumber) {
@@ -31,7 +32,7 @@ public class PreferencesFragment extends PreferenceFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         context = rootView.getContext();
@@ -52,28 +53,28 @@ public class PreferencesFragment extends PreferenceFragment {
 
         int section = this.getArguments().getInt(ARG_SECTION_NUMBER);
 
-        if (section == 1) {
-            addPreferencesFromResource(R.xml.pref_system);
+        switch (section) {
+            case 1:
+                addPreferencesFromResource(R.xml.pref_system);
+                break;
+            case 2:
+                addPreferencesFromResource(R.xml.pref_general);
+                break;
+            case 3:
+                addPreferencesFromResource(R.xml.pref_kernel);
+                break;
+        }
 
-            bindPreferenceSummaryToValue(findPreference("pref_recentapp_style"));
-            bindPreferenceSummaryToValue(findPreference("pref_dalvik_optimization"));
-
-        } else if (section == 2) {
-            addPreferencesFromResource(R.xml.pref_general);
-
-        } else  if (section == 3) {
-
-            // Add 'data and sync' preferences, and a corresponding header.
-/*            PreferenceCategory fakeHeader = new PreferenceCategory(context);
-            fakeHeader = new PreferenceCategory(context);
-            fakeHeader.setTitle(R.string.pref_header_data_sync);
-            getPreferenceScreen().addPreference(fakeHeader);                  */
-            addPreferencesFromResource(R.xml.pref_kernel);
-
-            bindPreferenceSummaryToValue(findPreference("pref_s2s"));
-            bindPreferenceSummaryToValue(findPreference("pref_cpu_oc"));
-            bindPreferenceSummaryToValue(findPreference("pref_edp"));
-
+        for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
+            Preference preference = getPreferenceScreen().getPreference(i);
+            if (preference instanceof PreferenceCategory) {
+                PreferenceCategory category = (PreferenceCategory) preference;
+                for (int j = 0; j < category.getPreferenceCount(); j++) {
+                    preference = category.getPreference(j);
+                    bindPreferenceSummaryToValue(preference);
+                }
+            } else
+              bindPreferenceSummaryToValue(preference);
         }
     }
 
@@ -90,17 +91,26 @@ public class PreferencesFragment extends PreferenceFragment {
                         index >= 0
                                 ? listPreference.getEntries()[index]
                                 : null);
-
-            } else if (preference instanceof DisplayGamma) {
-                if (TextUtils.isEmpty(stringValue)) {
-                    preference.setSummary("Empty");
-
-                } else {
-                    preference.setSummary("not Empty");
-              }
-
-            } else {
-                preference.setSummary(stringValue);
+            } else if (preference instanceof SwitchPreference) {
+                PreferenceCategory pCategory = (PreferenceCategory) preference.getPreferenceManager().findPreference("hotplug_category");
+                if (pCategory != null && pCategory.findPreference(preference.getKey()) != null) {
+                    if ((Boolean) value) {
+                        for (int i = 0; i < pCategory.getPreferenceCount(); i++) {
+                            if (pCategory.getPreference(i) instanceof SwitchPreference) {
+                                SwitchPreference pref = (SwitchPreference) pCategory.getPreference(i);
+                                if (pref.isChecked() && pref.getKey() != preference.getKey()) {
+                                    PreferencesFragment.in_swith_state = true;
+                                    pref.setChecked(false);
+                                }
+                            }
+                        }
+                    } else {
+                        if (!PreferencesFragment.in_swith_state) {
+                            return false;
+                        } else
+                            PreferencesFragment.in_swith_state = false;
+                    }
+                }
             }
             return true;
         }
@@ -109,7 +119,8 @@ public class PreferencesFragment extends PreferenceFragment {
     private static void bindPreferenceSummaryToValue(Preference preference) {
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+        if (preference instanceof ListPreference)
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));

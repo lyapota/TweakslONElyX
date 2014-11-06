@@ -1,8 +1,3 @@
-/*
- * Copyright 2012 Jay Weisskopf
- *
- * Licensed under the MIT License (see LICENSE.txt)
- */
 
 package com.lyapota.peferences;
 
@@ -16,9 +11,6 @@ package com.lyapota.peferences;
 
         import com.lyapota.tweakslonelyx.R;
 
-/**
- * @author Jay Weisskopf
- */
 public class SliderPreference extends DialogPreference {
 
     protected final static int SEEKBAR_RESOLUTION = 10000;
@@ -30,20 +22,11 @@ public class SliderPreference extends DialogPreference {
     TextView message;
     SeekBar seekbar;
 
-    /**
-     * @param context
-     * @param attrs
-     */
     public SliderPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setup(context, attrs);
     }
 
-    /**
-     * @param context
-     * @param attrs
-     * @param defStyle
-     */
     public SliderPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setup(context, attrs);
@@ -180,4 +163,3 @@ public class SliderPreference extends DialogPreference {
         super.onDialogClosed(positiveResult);
     }
 }
-// TODO: Save and res

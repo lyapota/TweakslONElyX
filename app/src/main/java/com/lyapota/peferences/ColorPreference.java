@@ -28,9 +28,6 @@ import android.widget.TextView;
 
 import com.lyapota.tweakslonelyx.R;
 
-/**
- * A preference that allows the user to choose an application or shortcut.
- */
 public class ColorPreference extends Preference {
     private int[] mColorChoices = {};
     private int mValue = 0;

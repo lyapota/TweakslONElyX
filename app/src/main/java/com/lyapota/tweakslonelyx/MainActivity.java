@@ -28,11 +28,11 @@ public class MainActivity extends Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Load the settings
+        /* Load the settings */
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark = sp.getBoolean(PREF_THEME, false);
 
-        // set the theme according to the setting
+        /* set the theme according to the setting */
         if (isDark)
             this.setTheme(R.style.AppThemeDark);
         else
@@ -45,7 +45,7 @@ public class MainActivity extends Activity
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
+        /* Set up the drawer. */
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -74,6 +74,7 @@ public class MainActivity extends Activity
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -85,12 +86,14 @@ public class MainActivity extends Activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+
             getMenuInflater().inflate(R.menu.main, menu);
             MenuItem apply_on_reboot = menu.findItem(R.id.apply_on_reboot_menu_item);
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             mNavigationDrawerFragment.mApplyOnReboot =
                     sp.getBoolean(NavigationDrawerFragment.PREF_APPLY_ON_REBOOT, false);
+
             if (mNavigationDrawerFragment.mApplyOnReboot)
                 apply_on_reboot.setIcon(R.drawable.btn_apply_on_reboot_on);
             else
@@ -109,15 +112,18 @@ public class MainActivity extends Activity
         switch (item.getItemId()) {
             case R.id.theme_menu_item:
                 sp.edit().putBoolean(PREF_THEME, !sp.getBoolean(PREF_THEME, false)).apply();
+
                 Intent i = getBaseContext()
                         .getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext()
                                                    .getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+
                 break;
             case R.id.about_menu_item:
                 AboutDialog.showAbout(this);
+
                 break;
         }
 

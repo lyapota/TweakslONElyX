@@ -77,8 +77,6 @@
 
     ]]></string>
 
-    <string name="pref_title_hotplug">CPU Hotplug</string>
-    <string name="pref_description_hotplug">Change CPU Hotplug algorithm</string>
     <string name="summary_current">Current</string>
     <string name="summary_disabled">Disabled</string>
     <string name="pref_title_hotplug_mpdec">MPDecision</string>

@@ -57,7 +57,7 @@
         android:key="pref_color_cal"
         android:title="@string/pref_title_color_cal" />
 
-    <PreferenceCategory android:title="@string/pref_audio_category">
+    <PreferenceCategory  android:key="audio_category" android:title="@string/pref_audio_category">
 
         <CheckBoxPreference
             android:defaultValue="false"
@@ -71,41 +71,35 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_hotplug_category">
-
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="pref_hotplug"
-            android:summary="@string/pref_description_hotplug"
-            android:title="@string/pref_title_hotplug" />
+    <PreferenceCategory android:key="hotplug_category" android:title="@string/pref_hotplug_category">
 
         <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="pref_hotplug"
+            android:disableDependentsState="true"
+            android:checked="true"
             android:key="pref_hotplug_mpdec"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_mpdec" />
 
         <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="pref_hotplug"
+            android:disableDependentsState="true"
+            android:checked="false"
             android:key="pref_hotplug_cpuquiet"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_cpuquiet" />
 
         <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="pref_hotplug"
+            android:disableDependentsState="true"
+            android:checked="false"
             android:key="pref_hotplug_intelli"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_intelli" />
 
         <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="pref_hotplug"
+            android:disableDependentsState="true"
+            android:checked="false"
             android:key="pref_hotplug_mako"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"

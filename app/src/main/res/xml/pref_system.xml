@@ -4,7 +4,7 @@
         android:key="pref_longpress_backkey"
         android:title="@string/pref_title_longpress_backkey"
         android:summary="@string/pref_description_longpress_backkey"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <ListPreference
         android:key="pref_recentapp_style"

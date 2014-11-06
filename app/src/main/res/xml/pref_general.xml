@@ -4,7 +4,7 @@
         android:key="pref_allow_prism_landscape"
         android:title="@string/pref_title_allow_prism_landscape"
         android:summary="@string/pref_description_allow_prism_landscape"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <CheckBoxPreference
         android:key="pref_crtoff_animation"
@@ -16,7 +16,7 @@
         android:key="pref_allow_360_rotation"
         android:title="@string/pref_title_allow_360_rotation"
         android:summary="@string/pref_description_allow_360_rotation"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <CheckBoxPreference
         android:key="pref_safe_volume"
