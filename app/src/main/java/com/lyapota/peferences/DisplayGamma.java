@@ -1,28 +1,12 @@
 package com.lyapota.peferences;
 
-/*
- * Copyright (C) 2013 The CyanogenMod Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
         import android.app.AlertDialog;
         import android.content.Context;
         import android.content.DialogInterface;
-        import android.content.res.Resources;
+        import android.content.res.TypedArray;
         import android.os.Bundle;
-        import android.os.Parcel;
-        import android.os.Parcelable;
         import android.preference.DialogPreference;
+        import android.support.annotation.NonNull;
         import android.text.TextUtils;
         import android.util.AttributeSet;
         import android.view.LayoutInflater;
@@ -34,13 +18,8 @@ package com.lyapota.peferences;
         import android.widget.TextView;
 
         import com.lyapota.tweakslonelyx.R;
-        import com.lyapota.util.GammaCorrector;
 
-/**
- * Special preference type that allows configuration of Gamma settings
- */
 public class DisplayGamma extends DialogPreference {
-    private static final String TAG = "GammaCalibration";
 
     private static final int[] BAR_COLORS = new int[] {
             R.string.color_red_title,
@@ -48,26 +27,54 @@ public class DisplayGamma extends DialogPreference {
             R.string.color_blue_title
     };
 
-    private GammaSeekBar[][] mSeekBars;
+    private GammaSeekBar[] mSeekBars;
 
-    private String[][] mCurrentColors;
-    private String[] mOriginalColors;
-    private int mNumberOfControls;
+    private String[] mCurrentColors;
+    private String mOriginalColors;
+    protected String mValue;
 
     public DisplayGamma(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        if (!isSupported()) {
-            return;
-        }
-
-        mNumberOfControls = GammaCorrector.getNumberOfControls();
-        mSeekBars = new GammaSeekBar[mNumberOfControls][BAR_COLORS.length];
-
-        mOriginalColors = new String[mNumberOfControls];
-        mCurrentColors = new String[mNumberOfControls][];
+        mSeekBars = new GammaSeekBar[BAR_COLORS.length];
+        mCurrentColors = new String[BAR_COLORS.length];
 
         setDialogLayoutResource(R.layout.display_gamma_calibration);
+    }
+
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        return a.getString(index);
+    }
+
+    @Override
+    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        setValue(restoreValue ? getPersistedString(mValue) : (String) defaultValue);
+    }
+
+    @Override
+    public CharSequence getSummary() {
+        CharSequence summary = super.getSummary();
+        if (super.getSummary() == null)
+            summary = getValue();
+        return summary;
+    }
+
+    public String getValue() {
+        if (mValue != null )
+           return mValue;
+        else
+            return "255 255 255";
+    }
+
+    public void setValue(String value) {
+        if (shouldPersist()) {
+            persistString(value);
+        }
+        if (!value.equals(mValue)) {
+            mValue = value;
+            notifyChanged();
+        }
     }
 
     @Override
@@ -81,72 +88,45 @@ public class DisplayGamma extends DialogPreference {
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         super.onBindDialogView(view);
 
         final ViewGroup container = (ViewGroup) view.findViewById(R.id.gamma_container);
         final LayoutInflater inflater = LayoutInflater.from(getContext());
-        final Resources res = container.getResources();
-        final String[] gammaDescriptors = res.getStringArray(R.array.gamma_descriptors);
 
-        // Create multiple sets of seekbars, depending on the
-        // number of controls the device has
-        for (int index = 0; index < mNumberOfControls; index++) {
-            mOriginalColors[index] = GammaCorrector.getCurGamma(index);
-            mCurrentColors[index] = mOriginalColors[index].split(" ");
+            mOriginalColors = getValue();
+            mCurrentColors = mOriginalColors.split(" ");
 
             ImageView sample = (ImageView) inflater.inflate(
                     R.layout.display_gamma_calibration_sample, container, false);
             container.addView(sample);
 
-            if (mNumberOfControls != 1) {
-                TextView header = (TextView) inflater.inflate(
-                        R.layout.display_gamma_calibration_header, container, false);
-
-                if (index < gammaDescriptors.length) {
-                    header.setText(gammaDescriptors[index]);
-                } else {
-                    header.setText(res.getString(
-                            R.string.gamma_tuning_control_set_header, index + 1));
-                }
-                container.addView(header);
-            }
-
             for (int color = 0; color < BAR_COLORS.length; color++) {
                 ViewGroup item = (ViewGroup) inflater.inflate(
                         R.layout.display_gamma_calibration_item, container, false);
 
-                mSeekBars[index][color] = new GammaSeekBar(index, color, item);
-                mSeekBars[index][color].setGamma(Integer.valueOf(mCurrentColors[index][color]));
-                // make sure to add the seekbar group to the container _after_
-                // creating GammaSeekBar, so that GammaSeekBar has a chance to
-                // get the correct subviews without getting confused by duplicate IDs
+                mSeekBars[color] = new GammaSeekBar(color, item);
+                mSeekBars[color].setGamma(Integer.valueOf(mCurrentColors[color]));
                 container.addView(item);
             }
-        }
     }
 
     @Override
     protected void showDialog(Bundle state) {
         super.showDialog(state);
 
-        // can't use onPrepareDialogBuilder for this as we want the dialog
-        // to be kept open on click
         AlertDialog d = (AlertDialog) getDialog();
         Button defaultsButton = d.getButton(DialogInterface.BUTTON_NEUTRAL);
         defaultsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int index = 0; index < mSeekBars.length; index++) {
-                    final String[] defaultColors = mOriginalColors[index].split(" ");
+                final String[] defaultColors = mOriginalColors.split(" ");
 
-                    for (int color = 0; color < BAR_COLORS.length; color++) {
-                        mSeekBars[index][color].setGamma(Integer.valueOf(defaultColors[color]));
-                        mCurrentColors[index][color] = defaultColors[color];
-                    }
-                    GammaCorrector.setGamma(index,
-                            TextUtils.join(" ", mCurrentColors[index]));
+                for (int color = 0; color < BAR_COLORS.length; color++) {
+                    mSeekBars[color].setGamma(Integer.valueOf(defaultColors[color]));
+                    mCurrentColors[color] = defaultColors[color];
                 }
+                setValue(TextUtils.join(" ", mCurrentColors));
             }
         });
     }
@@ -156,145 +136,36 @@ public class DisplayGamma extends DialogPreference {
         super.onDialogClosed(positiveResult);
 
         if (!positiveResult && mOriginalColors != null) {
-            for (int i = 0; i < mNumberOfControls; i++) {
-                GammaCorrector.setGamma(i, mOriginalColors[i]);
-            }
-        }
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        final Parcelable superState = super.onSaveInstanceState();
-        if (getDialog() == null || !getDialog().isShowing()) {
-            return superState;
-        }
-
-        // Save the dialog state
-        final SavedState myState = new SavedState(superState);
-        myState.controlCount = mNumberOfControls;
-        myState.currentColors = mCurrentColors;
-        myState.originalColors = mOriginalColors;
-
-        // Restore the old state when the activity or dialog is being paused
-        for (int i = 0; i < mNumberOfControls; i++) {
-            GammaCorrector.setGamma(i, mOriginalColors[i]);
-        }
-        mOriginalColors = null;
-
-        return myState;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        if (state == null || !state.getClass().equals(SavedState.class)) {
-            // Didn't save state for us in onSaveInstanceState
-            super.onRestoreInstanceState(state);
-            return;
-        }
-
-        SavedState myState = (SavedState) state;
-        super.onRestoreInstanceState(myState.getSuperState());
-        mNumberOfControls = myState.controlCount;
-        mOriginalColors = myState.originalColors;
-        mCurrentColors = myState.currentColors;
-
-        for (int index = 0; index < mNumberOfControls; index++) {
-            for (int color = 0; color < BAR_COLORS.length; color++) {
-                mSeekBars[index][color].setGamma(Integer.valueOf(mCurrentColors[index][color]));
-            }
-            GammaCorrector.setGamma(index, TextUtils.join(" ", mCurrentColors[index]));
-        }
-    }
-
-    public static boolean isSupported() {
-        try {
-            return GammaCorrector.isSupported();
-        } catch (NoClassDefFoundError e) {
-            // Hardware abstraction framework isn't installed
-            return false;
+                setValue(mOriginalColors);
         }
     }
 
     public void restore(Context context) {
-        if (!isSupported()) {
-            return;
-        }
-
-        for (int i = 0; i < GammaCorrector.getNumberOfControls(); i++) {
-            final String values = mOriginalColors[i];
+            final String values = mOriginalColors;
             if (values != null) {
-                GammaCorrector.setGamma(i, values);
+                setValue(values);
             }
-        }
-    }
-
-    private static class SavedState extends BaseSavedState {
-        int controlCount;
-        String[] originalColors;
-        String[][] currentColors;
-
-        public SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        public SavedState(Parcel source) {
-            super(source);
-            controlCount = source.readInt();
-            originalColors = source.createStringArray();
-            currentColors = new String[controlCount][];
-            for (int i = 0; i < controlCount; i++) {
-                currentColors[i] = source.createStringArray();
-            }
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-            dest.writeInt(controlCount);
-            dest.writeStringArray(originalColors);
-            for (int i = 0; i < controlCount; i++) {
-                dest.writeStringArray(currentColors[i]);
-            }
-        }
-
-        public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-
-                    public SavedState createFromParcel(Parcel in) {
-                        return new SavedState(in);
-                    }
-
-                    public SavedState[] newArray(int size) {
-                        return new SavedState[size];
-                    }
-                };
     }
 
     private class GammaSeekBar implements SeekBar.OnSeekBarChangeListener {
-        private int mControlIndex;
         private int mColorIndex;
-        private int mOriginal;
-        private int mMin;
+        private int mMin = 1;
+        private int mMax = 255;
         private SeekBar mSeekBar;
         private TextView mValue;
 
-        public GammaSeekBar(int controlIndex, int colorIndex, ViewGroup container) {
-            mControlIndex = controlIndex;
+        public GammaSeekBar(int colorIndex, ViewGroup container) {
             mColorIndex = colorIndex;
-
-            mMin = GammaCorrector.getMinValue(controlIndex);
-
             mValue = (TextView) container.findViewById(R.id.color_value);
             mSeekBar = (SeekBar) container.findViewById(R.id.color_seekbar);
 
             TextView label = (TextView) container.findViewById(R.id.color_text);
             label.setText(container.getContext().getString(BAR_COLORS[colorIndex]));
 
-            mSeekBar.setMax(GammaCorrector.getMaxValue(controlIndex) - mMin);
+            mSeekBar.setMax(mMax - mMin);
             mSeekBar.setProgress(0);
             mValue.setText(String.valueOf(mSeekBar.getProgress() + mMin));
 
-            // this must be done last, we don't want to apply our initial value to the hardware
             mSeekBar.setOnSeekBarChangeListener(this);
         }
 
@@ -305,9 +176,8 @@ public class DisplayGamma extends DialogPreference {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (fromUser) {
-                mCurrentColors[mControlIndex][mColorIndex] = String.valueOf(progress + mMin);
-                GammaCorrector.setGamma(mControlIndex,
-                        TextUtils.join(" ", mCurrentColors[mControlIndex]));
+                mCurrentColors[mColorIndex] = String.valueOf(progress + mMin);
+                setValue(TextUtils.join(" ", mCurrentColors));
             }
             mValue.setText(String.valueOf(progress + mMin));
         }

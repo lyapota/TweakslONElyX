@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
 import java.util.ArrayList;
+
 import android.util.Log;
 
 import com.lyapota.util.AboutDialog;
@@ -25,6 +26,7 @@ public class MainActivity extends Activity
     private static final String PREF_THEME = "isDarkTheme";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
+    boolean mShowActionReboot = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +58,23 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-             .replace(R.id.container, PreferencesFragment.newInstance(position + 1))
-             .commit();
+                .replace(R.id.container, PreferencesFragment.newInstance(position + 1))
+                .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section_system);
+                mShowActionReboot = false;
                 break;
             case 2:
                 mTitle = getString(R.string.title_section_general);
+                mShowActionReboot = false;
                 break;
             case 3:
                 mTitle = getString(R.string.title_section_kernel);
+                mShowActionReboot = true;
                 break;
         }
     }
@@ -85,24 +90,29 @@ public class MainActivity extends Activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-            getMenuInflater().inflate(R.menu.main, menu);
-            MenuItem apply_on_reboot = menu.findItem(R.id.apply_on_reboot_menu_item);
-
-            mNavigationDrawerFragment.mApplyOnReboot =
-                    sp.getBoolean(NavigationDrawerFragment.PREF_APPLY_ON_REBOOT, false);
-
-            if (mNavigationDrawerFragment.mApplyOnReboot)
-                apply_on_reboot.setIcon(R.drawable.btn_apply_on_reboot_on);
-            else
-                apply_on_reboot.setIcon(R.drawable.btn_apply_on_reboot_off);
-
-            restoreActionBar();
-            return true;
+        if (mNavigationDrawerFragment.isDrawerOpen() || !mShowActionReboot) {
+            getMenuInflater().inflate(R.menu.global, menu);
+            return super.onCreateOptionsMenu(menu);
         }
-        return super.onCreateOptionsMenu(menu);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        getMenuInflater().inflate(R.menu.main, menu);
+
+
+        MenuItem apply_on_reboot = menu.findItem(R.id.apply_on_reboot_menu_item);
+
+        mNavigationDrawerFragment.mApplyOnReboot =
+                sp.getBoolean(NavigationDrawerFragment.PREF_APPLY_ON_REBOOT, false);
+
+        if (mNavigationDrawerFragment.mApplyOnReboot)
+            apply_on_reboot.setIcon(R.drawable.btn_apply_on_reboot_on);
+        else
+            apply_on_reboot.setIcon(R.drawable.btn_apply_on_reboot_off);
+
+        restoreActionBar();
+
+        return true;
     }
 
     @Override
@@ -116,7 +126,7 @@ public class MainActivity extends Activity
                 Intent i = getBaseContext()
                         .getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext()
-                                                   .getPackageName());
+                                .getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
@@ -138,7 +148,7 @@ public class MainActivity extends Activity
             Log.e("DriverActivity", e.getMessage());
         }
         return commands;
-        }
+    }
 
     private String[] getNetworkAdapters() {
         String output = null;
@@ -147,23 +157,23 @@ public class MainActivity extends Activity
 
         try {
             output = Shell.sudo("netcfg");
-            if(output != null) {
+            if (output != null) {
                 netcfg = output.split("\\s+");
                 adapters = new ArrayList<String>();
 
                 // Parse out adapter names.
-                for(int i = 0; i < netcfg.length; i+=5) {
+                for (int i = 0; i < netcfg.length; i += 5) {
                     adapters.add(netcfg[i]);
-        }
-                        }
+                }
+            }
         } catch (ShellException e) {
             Log.e("DriverActivity", e.getMessage());
-                    }
+        }
 
         // Return null if there is no output returned.
-        if(adapters != null) {
+        if (adapters != null) {
             return adapters.toArray(new String[adapters.size()]);
-                } else {
+        } else {
             return null;
         }
     }

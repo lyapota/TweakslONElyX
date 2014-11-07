@@ -54,6 +54,7 @@
         android:title="@string/dimmer_title" />
 
     <com.lyapota.peferences.DisplayGamma
+        android:defaultValue="255 255 255"
         android:key="pref_color_cal"
         android:title="@string/pref_title_color_cal" />
 
@@ -66,6 +67,7 @@
             android:title="@string/pref_title_high_perf_mode" />
 
         <com.lyapota.peferences.DisplayGun
+            android:defaultValue="0 0 0 0"
             android:key="pref_gun_control"
             android:title="@string/pref_title_gun_control" />
 

@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lyapota.peferences.SliderPreference;
+
 public class PreferencesFragment extends PreferenceFragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -74,16 +76,16 @@ public class PreferencesFragment extends PreferenceFragment {
                     bindPreferenceSummaryToValue(preference);
                 }
             } else
-              bindPreferenceSummaryToValue(preference);
+                bindPreferenceSummaryToValue(preference);
         }
     }
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
-            String stringValue = value.toString();
 
             if (preference instanceof ListPreference) {
+                String stringValue = value.toString();
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
 
@@ -121,9 +123,9 @@ public class PreferencesFragment extends PreferenceFragment {
 
         if (preference instanceof ListPreference)
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                PreferenceManager
-                        .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+                    PreferenceManager
+                            .getDefaultSharedPreferences(preference.getContext())
+                            .getString(preference.getKey(), ""));
     }
 
 }
