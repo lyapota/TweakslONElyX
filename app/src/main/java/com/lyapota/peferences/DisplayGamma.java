@@ -152,11 +152,11 @@ public class DisplayGamma extends DialogPreference {
         private int mMin = 1;
         private int mMax = 255;
         private SeekBar mSeekBar;
-        private TextView mValue;
+        private TextView tValue;
 
         public GammaSeekBar(int colorIndex, ViewGroup container) {
             mColorIndex = colorIndex;
-            mValue = (TextView) container.findViewById(R.id.color_value);
+            tValue = (TextView) container.findViewById(R.id.color_value);
             mSeekBar = (SeekBar) container.findViewById(R.id.color_seekbar);
 
             TextView label = (TextView) container.findViewById(R.id.color_text);
@@ -164,7 +164,7 @@ public class DisplayGamma extends DialogPreference {
 
             mSeekBar.setMax(mMax - mMin);
             mSeekBar.setProgress(0);
-            mValue.setText(String.valueOf(mSeekBar.getProgress() + mMin));
+            tValue.setText(String.valueOf(mSeekBar.getProgress() + mMin));
 
             mSeekBar.setOnSeekBarChangeListener(this);
         }
@@ -179,7 +179,7 @@ public class DisplayGamma extends DialogPreference {
                 mCurrentColors[mColorIndex] = String.valueOf(progress + mMin);
                 setValue(TextUtils.join(" ", mCurrentColors));
             }
-            mValue.setText(String.valueOf(progress + mMin));
+            tValue.setText(String.valueOf(progress + mMin));
         }
 
         @Override

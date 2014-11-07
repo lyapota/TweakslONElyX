@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:key="pref_s2s"
+        android:key="kpref_s2s"
         android:title="@string/pref_title_s2s"
         android:defaultValue="1"
         android:entries="@array/pref_s2s_titles"
@@ -10,13 +10,13 @@
         android:positiveButtonText="@null" />
 
     <CheckBoxPreference
-        android:key="pref_magnetic_cover"
+        android:key="kpref_magnetic_cover"
         android:title="@string/pref_title_magnetic_cover"
         android:summary="@string/pref_description_magnetic_cover"
         android:defaultValue="false" />
 
     <CheckBoxPreference
-        android:key="pref_fast_charge"
+        android:key="kpref_fast_charge"
         android:title="@string/pref_title_fast_charge"
         android:summary="@string/pref_description_fast_charge"
         android:defaultValue="false" />
@@ -24,12 +24,12 @@
     <com.lyapota.peferences.SliderPreference
         android:defaultValue="@string/slider_cpu_uv_default"
         android:dialogMessage="@string/slider_cpu_uv_message"
-        android:key="pref_cpu_uv"
+        android:key="kpref_cpu_uv"
         android:summary="@array/cpu_uv_summaries"
         android:title="@string/cpu_uv_title" />
 
     <ListPreference
-        android:key="pref_cpu_oc"
+        android:key="kpref_cpu_oc"
         android:title="@string/pref_title_cpu_oc"
         android:defaultValue="0"
         android:entries="@array/pref_cpu_oc_titles"
@@ -38,7 +38,7 @@
         android:positiveButtonText="@null" />
 
     <ListPreference
-        android:key="pref_edp"
+        android:key="kpref_edp"
         android:title="@string/pref_title_edp"
         android:defaultValue="0"
         android:entries="@array/pref_edp_titles"
@@ -49,26 +49,26 @@
     <com.lyapota.peferences.SliderPreference
         android:defaultValue="@string/pref_dimmer_default"
         android:dialogMessage="@string/pref_dimmer_message"
-        android:key="pref_dimmer"
+        android:key="kpref_dimmer"
         android:summary="@array/dimmer_summaries"
         android:title="@string/dimmer_title" />
 
     <com.lyapota.peferences.DisplayGamma
         android:defaultValue="255 255 255"
-        android:key="pref_color_cal"
+        android:key="kpref_color_cal"
         android:title="@string/pref_title_color_cal" />
 
     <PreferenceCategory  android:key="audio_category" android:title="@string/pref_audio_category">
 
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="pref_high_perf_mode"
+            android:key="kpref_high_perf_mode"
             android:summary="@string/pref_description_high_perf_mode"
             android:title="@string/pref_title_high_perf_mode" />
 
         <com.lyapota.peferences.DisplayGun
             android:defaultValue="0 0 0 0"
-            android:key="pref_gun_control"
+            android:key="kpref_gun_control"
             android:title="@string/pref_title_gun_control" />
 
     </PreferenceCategory>
@@ -78,7 +78,7 @@
         <SwitchPreference
             android:disableDependentsState="true"
             android:checked="true"
-            android:key="pref_hotplug_mpdec"
+            android:key="kpref_hotplug_mpdec"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_mpdec" />
@@ -86,7 +86,7 @@
         <SwitchPreference
             android:disableDependentsState="true"
             android:checked="false"
-            android:key="pref_hotplug_cpuquiet"
+            android:key="kpref_hotplug_cpuquiet"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_cpuquiet" />
@@ -94,7 +94,7 @@
         <SwitchPreference
             android:disableDependentsState="true"
             android:checked="false"
-            android:key="pref_hotplug_intelli"
+            android:key="kpref_hotplug_intelli"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_intelli" />
@@ -102,7 +102,7 @@
         <SwitchPreference
             android:disableDependentsState="true"
             android:checked="false"
-            android:key="pref_hotplug_mako"
+            android:key="kpref_hotplug_mako"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
             android:title="@string/pref_title_hotplug_mako" />

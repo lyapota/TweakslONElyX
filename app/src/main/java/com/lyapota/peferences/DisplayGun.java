@@ -153,11 +153,11 @@ public class DisplayGun extends DialogPreference {
         private int mMin = -20;
         private int mMax = 20;
         private SeekBar mSeekBar;
-        private TextView mValue;
+        private TextView tValue;
 
         public GunSeekBar(int gunIndex, ViewGroup container) {
             mGunIndex = gunIndex;
-            mValue = (TextView) container.findViewById(R.id.gun_value);
+            tValue = (TextView) container.findViewById(R.id.gun_value);
             mSeekBar = (SeekBar) container.findViewById(R.id.gun_seekbar);
 
             TextView label = (TextView) container.findViewById(R.id.gun_text);
@@ -165,7 +165,7 @@ public class DisplayGun extends DialogPreference {
 
             mSeekBar.setMax(mMax - mMin);
             mSeekBar.setProgress(0);
-            mValue.setText(String.valueOf(mSeekBar.getProgress() + mMin));
+            tValue.setText(String.valueOf(mSeekBar.getProgress() + mMin));
 
             mSeekBar.setOnSeekBarChangeListener(this);
         }
@@ -180,7 +180,7 @@ public class DisplayGun extends DialogPreference {
                 mCurrentGuns[mGunIndex] = String.valueOf(progress + mMin);
                 setValue(TextUtils.join(" ", mCurrentGuns));
             }
-            mValue.setText(String.valueOf(progress + mMin));
+            tValue.setText(String.valueOf(progress + mMin));
         }
 
         @Override
