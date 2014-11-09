@@ -34,7 +34,7 @@
 
         <EditTextPreference
             android:defaultValue=""
-            android:key="kpref_cpu_freq_governor_attr_1"
+            android:key="kpref_cpu_freq_governor_attr_"
             android:title="@string/dummy_string" />
     </PreferenceCategory>
 

@@ -44,7 +44,6 @@
     <string name="pref_description_fast_charge">Fast charge from low power source such as PC usb port</string>
 
     <string name="cpu_uv_title">Addition CPU voltage</string>
-    <string name="slider_cpu_uv_message">Addition CPU voltage with kernel init.</string>
 
     <string name="pref_title_cpu_oc">HW limit max CPU freq</string>
 
@@ -74,20 +73,14 @@
 
     ]]></string>
 
-    <string name="summary_current">Current</string>
-    <string name="summary_disabled">Disabled</string>
-    <string name="pref_title_hotplug_mpdec">MPDecision</string>
-    <string name="pref_title_hotplug_cpuquiet">CPUQuiet</string>
-    <string name="pref_hotplug_category">Hotplugs</string>
-    <string name="pref_title_hotplug_intelli">Intelli</string>
-    <string name="pref_title_hotplug_mako">Mako</string>
+    <string name="pref_hotplug_title">Hotplug</string>
 
     <string name="headphone_title">HeadPhone</string>
     <string name="speaker_title">Speaker</string>
     <string name="microphone_title">Microphone</string>
     <string name="camera_microphone_title">Camera microphone</string>
     <string name="pref_title_gun_control">Audio Gun control</string>
-    <string name="pref_audio_category">Audio</string>
+
     <string name="title_section_governors">Governors</string>
     <string name="freq_governor_title">Frequency governor</string>
     <string name="cpu_title">CPU</string>

@@ -84,7 +84,7 @@ public class PreferencesFragment extends PreferenceFragment {
         }
     }
 
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+    protected static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
 
@@ -97,42 +97,22 @@ public class PreferencesFragment extends PreferenceFragment {
                         index >= 0
                                 ? listPreference.getEntries()[index]
                                 : null);
-            } else if (preference instanceof SwitchPreference) {
-                PreferenceCategory pCategory = (PreferenceCategory) preference.getPreferenceManager().findPreference("hotplug_category");
-                if (pCategory != null && pCategory.findPreference(preference.getKey()) != null) {
-                    if ((Boolean) value) {
-                        for (int i = 0; i < pCategory.getPreferenceCount(); i++) {
-                            if (pCategory.getPreference(i) instanceof SwitchPreference) {
-                                SwitchPreference pref = (SwitchPreference) pCategory.getPreference(i);
-                                if (pref.isChecked() && pref.getKey() != preference.getKey()) {
-                                    PreferencesFragment.in_swith_state = true;
-                                    pref.setChecked(false);
-                                }
-                            }
-                        }
-                    } else {
-                        if (!PreferencesFragment.in_swith_state) {
-                            return false;
-                        } else
-                            PreferencesFragment.in_swith_state = false;
-                    }
-                }
             } else if (preference instanceof EditTextPreference) {
                 preference.setSummary(value.toString());
             }
 
-                return true;
+            return true;
         }
     };
 
-    private static void bindPreferenceSummaryToValue(Preference preference) {
-        preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+        private static void bindPreferenceSummaryToValue(Preference preference) {
+            preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
-        if ((preference instanceof ListPreference) || (preference instanceof EditTextPreference))
-            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                    PreferenceManager
-                            .getDefaultSharedPreferences(preference.getContext())
-                            .getString(preference.getKey(), ""));
+            if ((preference instanceof ListPreference) || (preference instanceof EditTextPreference))
+                sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                        PreferenceManager
+                                .getDefaultSharedPreferences(preference.getContext())
+                                .getString(preference.getKey(), ""));
+        }
+
     }
-
-}

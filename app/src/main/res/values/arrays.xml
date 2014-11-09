@@ -34,7 +34,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="cpu_uv_summaries">
+    <string-array name="pref_cpu_uv_titles">
         <item>-25 mV</item>
         <item>-20 mV</item>
         <item>-15 mV</item>
@@ -44,6 +44,18 @@
         <item>+15 mV</item>
         <item>+20 mV</item>
         <item>+25 mV</item>
+    </string-array>
+
+    <string-array name="pref_cpu_uv_values">
+        <item>-25</item>
+        <item>-20</item>
+        <item>-15</item>
+        <item>-10</item>
+        <item>0</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
     </string-array>
 
     <string-array name="pref_cpu_oc_titles">
@@ -90,6 +102,21 @@
         <item>stock</item>
     </string-array>
 
+
+    <string-array name="pref_hotplug_titles">
+        <item>MPDecision</item>
+        <item>CPUQuiet</item>
+        <item>Intelli</item>
+        <item>Mako</item>
+    </string-array>
+
+    <string-array name="pref_hotplug_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
     <string-array name="default_color_choice_values" translatable="false">
         <item>#33b5e5</item>
         <item>#aa66cc</item>
@@ -112,6 +139,7 @@
         <item>#ffffff</item>
         <item>#000000</item>
     </string-array>
+
     <string-array name="pref_cpu_freq_governor_titles" />
     <string-array name="pref_cpu_freq_governor_values" />
     <string-array name="pref_gpu_freq_governor_titles" />

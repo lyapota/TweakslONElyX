@@ -1,50 +1,52 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:key="kpref_s2s"
-        android:title="@string/pref_title_s2s"
         android:defaultValue="3"
         android:entries="@array/pref_s2s_titles"
         android:entryValues="@array/pref_s2s_values"
+        android:key="kpref_s2s"
         android:negativeButtonText="@null"
-        android:positiveButtonText="@null" />
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_s2s" />
 
     <CheckBoxPreference
+        android:defaultValue="true"
         android:key="kpref_magnetic_cover"
-        android:title="@string/pref_title_magnetic_cover"
         android:summary="@string/pref_description_magnetic_cover"
-        android:defaultValue="true" />
+        android:title="@string/pref_title_magnetic_cover" />
 
     <CheckBoxPreference
+        android:defaultValue="false"
         android:key="kpref_fast_charge"
-        android:title="@string/pref_title_fast_charge"
         android:summary="@string/pref_description_fast_charge"
-        android:defaultValue="false" />
+        android:title="@string/pref_title_fast_charge" />
 
-    <com.lyapota.peferences.SliderPreference
-        android:defaultValue="4"
-        android:dialogMessage="@string/slider_cpu_uv_message"
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_cpu_uv_titles"
+        android:entryValues="@array/pref_cpu_uv_values"
         android:key="kpref_cpu_uv"
-        android:summary="@array/cpu_uv_summaries"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
         android:title="@string/cpu_uv_title" />
 
     <ListPreference
-        android:key="kpref_cpu_oc"
-        android:title="@string/pref_title_cpu_oc"
         android:defaultValue="0"
         android:entries="@array/pref_cpu_oc_titles"
         android:entryValues="@array/pref_cpu_oc_values"
+        android:key="kpref_cpu_oc"
         android:negativeButtonText="@null"
-        android:positiveButtonText="@null" />
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_cpu_oc" />
 
     <ListPreference
-        android:key="kpref_edp"
-        android:title="@string/pref_title_edp"
         android:defaultValue="0"
         android:entries="@array/pref_edp_titles"
         android:entryValues="@array/pref_edp_values"
+        android:key="kpref_edp"
         android:negativeButtonText="@null"
-        android:positiveButtonText="@null" />
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_edp" />
 
     <com.lyapota.peferences.SliderPreference
         android:defaultValue="2"
@@ -58,55 +60,24 @@
         android:key="kpref_color_cal"
         android:title="@string/pref_title_color_cal" />
 
-    <PreferenceCategory  android:key="audio_category" android:title="@string/pref_audio_category">
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="kpref_high_perf_mode"
+        android:summary="@string/pref_description_high_perf_mode"
+        android:title="@string/pref_title_high_perf_mode" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="kpref_high_perf_mode"
-            android:summary="@string/pref_description_high_perf_mode"
-            android:title="@string/pref_title_high_perf_mode" />
+    <com.lyapota.peferences.DisplayGun
+        android:defaultValue="0 0 0 0"
+        android:key="kpref_gun_control"
+        android:title="@string/pref_title_gun_control" />
 
-        <com.lyapota.peferences.DisplayGun
-            android:defaultValue="0 0 0 0"
-            android:key="kpref_gun_control"
-            android:title="@string/pref_title_gun_control" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory android:key="hotplug_category" android:title="@string/pref_hotplug_category">
-
-        <SwitchPreference
-            android:disableDependentsState="true"
-            android:defaultValue="true"
-            android:key="kpref_hotplug_mpdec"
-            android:summaryOff="@string/summary_disabled"
-            android:summaryOn="@string/summary_current"
-            android:title="@string/pref_title_hotplug_mpdec" />
-
-        <SwitchPreference
-            android:disableDependentsState="true"
-            android:defaultValue="false"
-            android:key="kpref_hotplug_cpuquiet"
-            android:summaryOff="@string/summary_disabled"
-            android:summaryOn="@string/summary_current"
-            android:title="@string/pref_title_hotplug_cpuquiet" />
-
-        <SwitchPreference
-            android:disableDependentsState="true"
-            android:defaultValue="false"
-            android:key="kpref_hotplug_intelli"
-            android:summaryOff="@string/summary_disabled"
-            android:summaryOn="@string/summary_current"
-            android:title="@string/pref_title_hotplug_intelli" />
-
-        <SwitchPreference
-            android:disableDependentsState="true"
-            android:defaultValue="false"
-            android:key="kpref_hotplug_mako"
-            android:summaryOff="@string/summary_disabled"
-            android:summaryOn="@string/summary_current"
-            android:title="@string/pref_title_hotplug_mako" />
-
-    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_hotplug_titles"
+        android:entryValues="@array/pref_hotplug_values"
+        android:key="kpref_hotplug"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_hotplug_title" />
 
 </PreferenceScreen>

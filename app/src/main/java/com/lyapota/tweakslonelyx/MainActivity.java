@@ -24,6 +24,7 @@ public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static final String PREF_THEME = "isDarkTheme";
+    private static final String PREF_FIRST_START = "isFirstStart";
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     boolean mShowActionReboot = false;
@@ -41,6 +42,17 @@ public class MainActivity extends Activity
             this.setTheme(R.style.AppThemeLight);
 
         super.onCreate(savedInstanceState);
+
+        boolean isFirstStart = sp.getBoolean(PREF_FIRST_START, true);
+        if (isFirstStart) {
+            PreferenceManager.setDefaultValues(this, R.xml.pref_system, false);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_kernel, false);
+
+            sp.edit().putBoolean(PREF_FIRST_START, false).apply();
+        }
+
+
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -97,6 +109,7 @@ public class MainActivity extends Activity
 
         if (mNavigationDrawerFragment.isDrawerOpen() || !mShowActionReboot) {
             getMenuInflater().inflate(R.menu.global, menu);
+            restoreActionBar();
             return super.onCreateOptionsMenu(menu);
         }
 
