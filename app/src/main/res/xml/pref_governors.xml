@@ -1,0 +1,41 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:key="tcp_congestion_category" android:title="@string/tcp_title">
+        <ListPreference
+            android:key="kpref_tcp_congestion_algorithm"
+            android:title="@string/freq_congestion_title"
+            android:defaultValue="0"
+            android:entries="@array/pref_congestion_algorithm_titles"
+            android:entryValues="@array/pref_congestion_algorithm_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="gpu_freq_governor_category" android:title="@string/gpu_title">
+        <ListPreference
+            android:key="kpref_gpu_freq_governor"
+            android:title="@string/freq_governor_title"
+            android:defaultValue="0"
+            android:entries="@array/pref_gpu_freq_governor_titles"
+            android:entryValues="@array/pref_gpu_freq_governor_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="cpu_freq_governor_category" android:title="@string/cpu_title">
+        <ListPreference
+            android:key="kpref_cpu_freq_governor"
+            android:title="@string/freq_governor_title"
+            android:defaultValue="0"
+            android:entries="@array/pref_cpu_freq_governor_titles"
+            android:entryValues="@array/pref_cpu_freq_governor_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:key="kpref_cpu_freq_governor_attr_1"
+            android:title="@string/dummy_string" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

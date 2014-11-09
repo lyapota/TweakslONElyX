@@ -98,10 +98,6 @@ public class DisplayGun extends DialogPreference {
             mOriginalGuns = getValue();
             mCurrentGuns = mOriginalGuns.split(" ");
 
-            ImageView sample = (ImageView) inflater.inflate(
-                    R.layout.display_gun_calibration_sample, container, false);
-            container.addView(sample);
-
             for (int gun = 0; gun < BAR_GUNS.length; gun++) {
                 ViewGroup item = (ViewGroup) inflater.inflate(
                         R.layout.display_gun_calibration_item, container, false);

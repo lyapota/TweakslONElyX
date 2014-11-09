@@ -3,7 +3,7 @@
     <ListPreference
         android:key="kpref_s2s"
         android:title="@string/pref_title_s2s"
-        android:defaultValue="1"
+        android:defaultValue="3"
         android:entries="@array/pref_s2s_titles"
         android:entryValues="@array/pref_s2s_values"
         android:negativeButtonText="@null"
@@ -13,7 +13,7 @@
         android:key="kpref_magnetic_cover"
         android:title="@string/pref_title_magnetic_cover"
         android:summary="@string/pref_description_magnetic_cover"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
     <CheckBoxPreference
         android:key="kpref_fast_charge"
@@ -22,7 +22,7 @@
         android:defaultValue="false" />
 
     <com.lyapota.peferences.SliderPreference
-        android:defaultValue="@string/slider_cpu_uv_default"
+        android:defaultValue="4"
         android:dialogMessage="@string/slider_cpu_uv_message"
         android:key="kpref_cpu_uv"
         android:summary="@array/cpu_uv_summaries"
@@ -47,7 +47,7 @@
         android:positiveButtonText="@null" />
 
     <com.lyapota.peferences.SliderPreference
-        android:defaultValue="@string/pref_dimmer_default"
+        android:defaultValue="2"
         android:dialogMessage="@string/pref_dimmer_message"
         android:key="kpref_dimmer"
         android:summary="@array/dimmer_summaries"
@@ -77,7 +77,7 @@
 
         <SwitchPreference
             android:disableDependentsState="true"
-            android:checked="true"
+            android:defaultValue="true"
             android:key="kpref_hotplug_mpdec"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
@@ -85,7 +85,7 @@
 
         <SwitchPreference
             android:disableDependentsState="true"
-            android:checked="false"
+            android:defaultValue="false"
             android:key="kpref_hotplug_cpuquiet"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
@@ -93,7 +93,7 @@
 
         <SwitchPreference
             android:disableDependentsState="true"
-            android:checked="false"
+            android:defaultValue="false"
             android:key="kpref_hotplug_intelli"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"
@@ -101,7 +101,7 @@
 
         <SwitchPreference
             android:disableDependentsState="true"
-            android:checked="false"
+            android:defaultValue="false"
             android:key="kpref_hotplug_mako"
             android:summaryOff="@string/summary_disabled"
             android:summaryOn="@string/summary_current"

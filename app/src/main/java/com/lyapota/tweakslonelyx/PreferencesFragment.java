@@ -3,6 +3,7 @@ package com.lyapota.tweakslonelyx;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -65,6 +66,9 @@ public class PreferencesFragment extends PreferenceFragment {
             case 3:
                 addPreferencesFromResource(R.xml.pref_kernel);
                 break;
+            case 4:
+                addPreferencesFromResource(R.xml.pref_governors);
+                break;
         }
 
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
@@ -113,15 +117,18 @@ public class PreferencesFragment extends PreferenceFragment {
                             PreferencesFragment.in_swith_state = false;
                     }
                 }
+            } else if (preference instanceof EditTextPreference) {
+                preference.setSummary(value.toString());
             }
-            return true;
+
+                return true;
         }
     };
 
     private static void bindPreferenceSummaryToValue(Preference preference) {
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
-        if (preference instanceof ListPreference)
+        if ((preference instanceof ListPreference) || (preference instanceof EditTextPreference))
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     PreferenceManager
                             .getDefaultSharedPreferences(preference.getContext())

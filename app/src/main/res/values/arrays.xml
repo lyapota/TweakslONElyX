@@ -85,8 +85,8 @@
     </string-array>
 
     <string-array name="dimmer_summaries">
-        <item>(1, 35, 130)</item>
-        <item>(1, 45, 175)</item>
+        <item>dark</item>
+        <item>medium</item>
         <item>stock</item>
     </string-array>
 
@@ -112,5 +112,11 @@
         <item>#ffffff</item>
         <item>#000000</item>
     </string-array>
+    <string-array name="pref_cpu_freq_governor_titles" />
+    <string-array name="pref_cpu_freq_governor_values" />
+    <string-array name="pref_gpu_freq_governor_titles" />
+    <string-array name="pref_gpu_freq_governor_values" />
+    <string-array name="pref_congestion_algorithm_titles" />
+    <string-array name="pref_congestion_algorithm_values" />
 
 </resources>

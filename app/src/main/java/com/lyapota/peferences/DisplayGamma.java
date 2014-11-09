@@ -97,10 +97,6 @@ public class DisplayGamma extends DialogPreference {
             mOriginalColors = getValue();
             mCurrentColors = mOriginalColors.split(" ");
 
-            ImageView sample = (ImageView) inflater.inflate(
-                    R.layout.display_gamma_calibration_sample, container, false);
-            container.addView(sample);
-
             for (int color = 0; color < BAR_COLORS.length; color++) {
                 ViewGroup item = (ViewGroup) inflater.inflate(
                         R.layout.display_gamma_calibration_item, container, false);

@@ -10,6 +10,15 @@
         android:orientation="vertical"
         android:paddingBottom="20dp" >
 
+        <ImageView
+            android:id="@+id/gun_sample"
+            android:src="@drawable/headphone_sample_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+        </ImageView>
+
         <!-- children will be filled in dynamically -->
 
     </LinearLayout>

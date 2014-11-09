@@ -76,6 +76,10 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_section_kernel);
                 mShowActionReboot = true;
                 break;
+            case 4:
+                mTitle = getString(R.string.title_section_governors);
+                mShowActionReboot = true;
+                break;
         }
     }
 

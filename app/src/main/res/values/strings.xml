@@ -43,7 +43,6 @@
     <string name="pref_title_fast_charge">Fast charge</string>
     <string name="pref_description_fast_charge">Fast charge from low power source such as PC usb port</string>
 
-    <item name="slider_cpu_uv_default" format="float" type="string">0.5</item>
     <string name="cpu_uv_title">Addition CPU voltage</string>
     <string name="slider_cpu_uv_message">Addition CPU voltage with kernel init.</string>
 
@@ -54,13 +53,11 @@
     <string name="pref_title_high_perf_mode">High perf mode</string>
     <string name="pref_description_high_perf_mode">Support configuration with Class AB amplifier for headphones</string>
 
-    <item name="pref_dimmer_default" format="float" type="string">1.0</item>
     <string name="dimmer_title">Dimmer mod</string>
     <string name="pref_dimmer_message">Set custom backlight dimmer values</string>
 
     <string name="pref_title_color_cal">LCD Color control</string>
     <string name="reset_button">Reset</string>
-    <string name="gamma_tuning_control_set_header"><![CDATA[Group <xliff:g id=\"index\">%d</xliff:g>]]></string>
     <string name="color_red_title">Red</string>
     <string name="color_green_title">Green</string>
     <string name="color_blue_title">Blue</string>
@@ -89,8 +86,14 @@
     <string name="speaker_title">Speaker</string>
     <string name="microphone_title">Microphone</string>
     <string name="camera_microphone_title">Camera microphone</string>
-    <string name="gun_tuning_control_set_header"><![CDATA[Group <xliff:g id=\"index\">%d</xliff:g>]]></string>
     <string name="pref_title_gun_control">Audio Gun control</string>
     <string name="pref_audio_category">Audio</string>
+    <string name="title_section_governors">Governors</string>
+    <string name="freq_governor_title">Frequency governor</string>
+    <string name="cpu_title">CPU</string>
+    <string name="gpu_title">GPU</string>
+    <string name="dummy_string">Dummy</string>
+    <string name="tcp_title">TCP</string>
+    <string name="freq_congestion_title">Congestion algorithm</string>
 
 </resources>
