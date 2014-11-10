@@ -12,13 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import java.util.ArrayList;
-
-import android.util.Log;
-
 import com.lyapota.util.AboutDialog;
-import com.lyapota.util.Shell;
-import com.lyapota.util.Shell.ShellException;
+import com.lyapota.util.TweaksHelper;
+
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -63,6 +59,8 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        TweaksHelper.setContext(this);
     }
 
     @Override
@@ -155,43 +153,5 @@ public class MainActivity extends Activity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private String[] getBinCommands() {
-        String[] commands = null;
-        try {
-            commands = Shell.exec("ls").split("\\s+");
-        } catch (ShellException e) {
-            Log.e("DriverActivity", e.getMessage());
-        }
-        return commands;
-    }
-
-    private String[] getNetworkAdapters() {
-        String output = null;
-        String[] netcfg = null;
-        ArrayList<String> adapters = null;
-
-        try {
-            output = Shell.sudo("netcfg");
-            if (output != null) {
-                netcfg = output.split("\\s+");
-                adapters = new ArrayList<String>();
-
-                // Parse out adapter names.
-                for (int i = 0; i < netcfg.length; i += 5) {
-                    adapters.add(netcfg[i]);
-                }
-            }
-        } catch (ShellException e) {
-            Log.e("DriverActivity", e.getMessage());
-        }
-
-        // Return null if there is no output returned.
-        if (adapters != null) {
-            return adapters.toArray(new String[adapters.size()]);
-        } else {
-            return null;
-        }
     }
 }

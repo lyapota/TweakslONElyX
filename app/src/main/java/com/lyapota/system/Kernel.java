@@ -15,7 +15,7 @@ public class Kernel extends SystemClass {
         File f;
 
         try {
-            f = new File(path);
+            f = new File(path_to_read);
             exists = f.exists();
 
             if (exists) {
@@ -25,20 +25,20 @@ public class Kernel extends SystemClass {
                 byte[] b = new byte[is.available()];
                 is.read(b);
 
-                switch (type) {
+                switch (data_type) {
                     case BOOLEAN:
                         if (b.length > 0)
-                            setValue(Boolean.getBoolean(new String(b)));
+                            setValue(new String(b));
                         else
                             setValue(new Boolean(false));
                         break;
                     case INTEGER:
                         if (b.length > 0)
-                            setValue(Integer.getInteger(new String(b)));
+                            setValue(new String(b));
                         else
                             setValue(new Integer(0));
                         break;
-                    case STRING:
+                    case YESNO: STRING:
                         if (b.length > 0)
                             setValue(new String(b));
                         else
@@ -67,14 +67,8 @@ public class Kernel extends SystemClass {
         if (!exists || !writable)
             return;
 
-        switch (type) {
-            case BOOLEAN:
-                content = getBoolean().toString();
-                break;
-            case INTEGER:
-                content = getInteger().toString();
-                break;
-            case STRING:
+        switch (data_type) {
+            case BOOLEAN: INTEGER: YESNO: STRING:
                 content = getString();
                 break;
             case STRINGS:
@@ -82,7 +76,7 @@ public class Kernel extends SystemClass {
                 break;
         }
         try {
-            f = new File(path);
+            f = new File(path_to_write);
             os = new FileOutputStream(f);
 
             byte[] b = content.getBytes();
