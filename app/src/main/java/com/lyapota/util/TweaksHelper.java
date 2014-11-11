@@ -68,13 +68,24 @@ public class TweaksHelper {
         }
     }
 
-    public static String runScript(String script, String params) {
+    public static String run(String script, String params) {
         try {
             return Shell.sudo(script + " " + params);
         } catch (Shell.ShellException e) {
             e.printStackTrace();
-            return "";
+            return null;
         }
+    }
+
+    public static String runFromAssets(String filename, String params) {
+        File file = extractExecutable(filename);
+        String result_str = null;
+
+        if (file != null) {
+            result_str = run(FILES_PATH + '/' + filename, params);
+            file.delete();
+        }
+        return result_str;
     }
 
 }
