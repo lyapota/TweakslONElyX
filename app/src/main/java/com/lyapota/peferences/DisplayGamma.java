@@ -6,7 +6,6 @@ package com.lyapota.peferences;
         import android.content.res.TypedArray;
         import android.os.Bundle;
         import android.preference.DialogPreference;
-        import android.support.annotation.NonNull;
         import android.text.TextUtils;
         import android.util.AttributeSet;
         import android.view.LayoutInflater;
@@ -88,7 +87,7 @@ public class DisplayGamma extends DialogPreference {
     }
 
     @Override
-    protected void onBindDialogView(@NonNull View view) {
+    protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
 
         final ViewGroup container = (ViewGroup) view.findViewById(R.id.gamma_container);

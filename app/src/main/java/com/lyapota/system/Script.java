@@ -6,12 +6,12 @@ public class Script extends SystemClass {
 
     @Override
     public void read() {
-        setValue(TweaksHelper.runScript(path_to_read, getKey() + " " + getString()));
+        setValue(TweaksHelper.runFromAssets(path_to_read, getKey() + " " + getString()));
     }
 
     @Override
     public void write() {
-        TweaksHelper.runScript(path_to_write, getKey() + " " + getString());
+        TweaksHelper.runFromAssets(path_to_write, getKey() + " " + getString());
     }
 
 }

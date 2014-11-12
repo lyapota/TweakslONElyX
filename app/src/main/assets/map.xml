@@ -1,33 +1,28 @@
 <preferences>
-  <build>
-    <item pref="pref_dalvik_optimization" path="dalvik.vm.dexopt-flags" type="string" def="v=a,o=v,m=y,u=n" />
-  </build>
-  <system>
-    <item pref="pref_longpress_backkey" path="tweaks_backkey_kill" type="bool" def="0" />
-    <item pref="pref_recentapp_style" path="tweaks_recentapps_style" type="int" def="1" />
-    <item pref="pref_allow_prism_landscape" path="tweak_prism_landscape" type="bool" def="false" />
-    <item pref="pref_crtoff_animation" path="tweaks_crtoff_anim" type="bool" def="false" />
-    <item pref="pref_allow_360_rotation" path="tweak_allow_all_rotations" type="bool" def="false" />
-    <item pref="pref_safe_volume" path="tweak_disable_safe_volume" type="bool" def="false" />
-    <item pref="pref_powersave_notification" path="tweaks_powersave_notification" type="bool" def="false" />
-  </system>
-  <kernel>
-    <item pref="kpref_s2s" path="/sys/android_touch/sweep2sleep" type="int" def="3" />
-    <item pref="kpref_magnetic_cover" path="/sys/android_cover/read_att" type="bool" def="true" />
-    <item pref="kpref_fast_charge" path="/sys/kernel/fast_charge/force_fast_charge" type="bool" def="false" />
-    <item pref="kpref_cpu_uv" path="/sys/module/clock_krait_8974/parameters/vdd_uv_quick" type="int" def="0" />
-    <item pref="kpref_cpu_oc" path="/sys/module/clock_krait_8974/parameters/cpu_oc_current" type="int" def="0" />
-    <item pref="kpref_edp" path="/sys/module/clock_krait_8974/parameters/edp_limit" type="int" def="0" />
-    <item pref="kpref_dimmer" path="/sys/backlight_dimmer/backlight_dimmer" type="int" def="0" />
-    <item pref="kpref_color_cal" path="sys/devices/platform/kcal_ctrl.0/kcal" type="strings" def="255 255 255" />
-    <item pref="kpref_color_cal_ctrl" path="sys/devices/platform/kcal_ctrl.0/kcal_ctrl" type="bool" def="1" />
-    <item pref="kpref_high_perf_mode" path="/sys/module/snd_soc_wcd9320/parameters/high_perf_mode" type="bool" def="false" />
-    <item pref="kpref_gun_control_headphone" path="/sys/kernel/sound_control_3/gpl_headphone_pa_gain" type="strings" def="44 44" />
-    <item pref="kpref_gun_control_speaker" path="/sys/kernel/sound_control_3/gpl_speaker_gain" type="strings" def="0 0" />
-    <item pref="kpref_gun_control_mic" path="/sys/kernel/sound_control_3/gpl_mic_gain" type="int" def="0" />
-    <item pref="kpref_gun_control_cam_mic" path="/sys/kernel/sound_control_3/gpl_cam_mic_gain" type="int" def="0" />
-  </kernel>
-  <shel>
-    <item pref="kpref_hotplug" path="" type="int" def="1" />
-  </shel>
+    <item pref="pref_longpress_backkey" path="tweaks_backkey_kill" type="int" def="0" >system</item>
+    <item pref="pref_recentapp_style" path="tweaks_recentapps_style" type="int" def="1" >system</item>
+    <item pref="pref_allow_prism_landscape" path="tweak_prism_landscape" type="int" def="0" >system</item>
+    <item pref="pref_crtoff_animation" path="tweaks_crtoff_anim" type="int" def="0" >system</item>
+    <item pref="pref_allow_360_rotation" path="tweak_allow_all_rotations" type="int" def="0" >system</item>
+    <item pref="pref_safe_volume" path="tweak_disable_safe_volume" type="int" def="0" >system</item>
+    <item pref="pref_powersave_notification" path="tweaks_powersave_notification" type="int" def="0" >system</item>
+
+    <item pref="kpref_s2s" path="/sys/android_touch/sweep2sleep" type="int" def="3" >kernel</item>
+    <item pref="kpref_magnetic_cover" path="/sys/module/hall_sensor/parameters/hall_state" path_write="/sys/android_cover/read_att" type="int" def="1" >kernel</item>
+    <item pref="kpref_fast_charge" path="/sys/kernel/fast_charge/force_fast_charge" type="int" def="0" >kernel</item>
+    <item pref="kpref_cpu_uv" path="/sys/module/clock_krait_8974/parameters/vdd_uv_quick" type="int" def="0" >kernel</item>
+    <item pref="kpref_cpu_oc" path="/sys/module/clock_krait_8974/parameters/cpu_oc_current" type="int" def="0" >kernel</item>
+    <item pref="kpref_edp" path="/sys/module/clock_krait_8974/parameters/edp_limit" type="int" def="0" >kernel</item>
+    <item pref="kpref_dimmer" path="/sys/backlight_dimmer/backlight_dimmer" type="int" def="0" >kernel</item>
+    <item pref="kpref_high_perf_mode" path="/sys/module/snd_soc_wcd9320/parameters/high_perf_mode" type="int" def="0" >kernel</item>
+
+    <item pref="kpref_color_cal" path="sys/devices/platform/kcal_ctrl.0/kcal" type="strings" def="255 255 255" add="sys/devices/platform/kcal_ctrl.0/kcal_ctrl" >kcal</item>
+
+    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_headphone_gain" type="strings" def="0 0" >headphone</item>
+    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_speaker_gain" type="strings" def="0 0" >speaker</item>
+    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_mic_gain" type="int" def="0" >mic</item>
+    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_cam_mic_gain" type="int" def="0" >cam_mic</item>
+
+    <item pref="pref_dalvik_optimization" path="build_prop.sh" type="string" def="v=a,o=v,m=y,u=n" add="dalvik.vm.dexopt-flags" >shell</item>
+    <item pref="kpref_hotplug" path="hotplug.sh" type="int" def="1" >shell</item>
 </preferences>
