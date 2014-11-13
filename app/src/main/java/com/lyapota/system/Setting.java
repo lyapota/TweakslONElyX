@@ -1,10 +1,27 @@
 package com.lyapota.system;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.provider.Settings;
 import android.text.TextUtils;
 
 public class Setting extends SystemClass {
+
+    public Setting(String a_key, String a_path, DataType a_data_type){
+        this(a_key, a_path, a_path, a_data_type, null);
+    }
+
+    public Setting(String a_key, String a_path_read, String a_path_write, DataType a_data_type){
+        this(a_key, a_path_read, a_path_write, a_data_type, null);
+    }
+
+    public Setting(String a_key, String a_path, DataType a_data_type, Context a_context){
+        this(a_key, a_path, a_path, a_data_type, a_context);
+    }
+
+    public Setting(String a_key, String a_path_read, String a_path_write,  DataType a_data_type, Context a_context){
+        super(a_key, a_path_read, a_path_write, a_data_type, a_context);
+    }
 
     @Override
     public void read() {

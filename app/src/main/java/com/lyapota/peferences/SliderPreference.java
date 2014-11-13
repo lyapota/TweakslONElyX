@@ -9,7 +9,7 @@ package com.lyapota.peferences;
         import android.widget.SeekBar;
         import android.widget.TextView;
 
-        import com.lyapota.tweakslonelyx.R;
+        import com.lyapota.tweakslonelyx.tweakslonelyx.R;
 
 public class SliderPreference extends DialogPreference {
 

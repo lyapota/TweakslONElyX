@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <preferences>
     <item pref="pref_longpress_backkey" path="tweaks_backkey_kill" type="int" def="0" >system</item>
     <item pref="pref_recentapp_style" path="tweaks_recentapps_style" type="int" def="1" >system</item>
@@ -15,14 +16,13 @@
     <item pref="kpref_edp" path="/sys/module/clock_krait_8974/parameters/edp_limit" type="int" def="0" >kernel</item>
     <item pref="kpref_dimmer" path="/sys/backlight_dimmer/backlight_dimmer" type="int" def="0" >kernel</item>
     <item pref="kpref_high_perf_mode" path="/sys/module/snd_soc_wcd9320/parameters/high_perf_mode" type="int" def="0" >kernel</item>
+    <item pref="kpref_color_cal" path="sys/devices/platform/kcal_ctrl.0/kcal" type="strings" def="255 255 255" ctrl="sys/devices/platform/kcal_ctrl.0/kcal_ctrl" >kernel</item>
 
-    <item pref="kpref_color_cal" path="sys/devices/platform/kcal_ctrl.0/kcal" type="strings" def="255 255 255" add="sys/devices/platform/kcal_ctrl.0/kcal_ctrl" >kcal</item>
+    <item pref="kpref_gun_control_headphone" path="/sys/kernel/sound_control_3/gpl_headphone_gain" type="strings" def="0 0" >gun</item>
+    <item pref="kpref_gun_control_speaker" path="/sys/kernel/sound_control_3/gpl_speaker_gain" type="strings" def="0 0" >gun</item>
+    <item pref="kpref_gun_control_mic" path="/sys/kernel/sound_control_3/gpl_mic_gain" type="int" def="0" >gun</item>
+    <item pref="kpref_gun_control_cam_mic" path="/sys/kernel/sound_control_3/gpl_cam_mic_gain" type="int" def="0" >gun</item>
 
-    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_headphone_gain" type="strings" def="0 0" >headphone</item>
-    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_speaker_gain" type="strings" def="0 0" >speaker</item>
-    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_mic_gain" type="int" def="0" >mic</item>
-    <item pref="kpref_gun_control" path="/sys/kernel/sound_control_3/gpl_cam_mic_gain" type="int" def="0" >cam_mic</item>
-
-    <item pref="pref_dalvik_optimization" path="build_prop.sh" type="string" def="v=a,o=v,m=y,u=n" add="dalvik.vm.dexopt-flags" >shell</item>
+    <item pref="pref_dalvik_optimization" path="build_prop.sh" type="string" def="v=a,o=v,m=y,u=n" prop="dalvik.vm.dexopt-flags" >shell</item>
     <item pref="kpref_hotplug" path="hotplug.sh" type="int" def="1" >shell</item>
 </preferences>

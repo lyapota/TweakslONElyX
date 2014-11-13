@@ -10,7 +10,7 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        TweaksHelper.setContext(context);
+        SystemHelper.setContext(context);
 
         if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             Toast.makeText(context, "Kernel tweaks applied", Toast.LENGTH_SHORT).show();

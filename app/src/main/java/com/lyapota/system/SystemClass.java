@@ -1,12 +1,15 @@
 package com.lyapota.system;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 public class SystemClass {
 
     public static enum DataType {BOOLEAN, YESNO, INTEGER, STRING, STRINGS};
 
     protected String key;
+    protected String prop = null;
+    protected String ctrl = null;
     protected String path_to_read;
     protected String path_to_write;
     protected Object value;
@@ -107,11 +110,17 @@ public class SystemClass {
     }
 
     public String getString() {
-        return value.toString();
+        if (data_type == DataType.STRINGS)
+            return TextUtils.join(" ", (String[]) value);
+        else
+            return value.toString();
     }
 
     public String[] getStrings() {
-        return (String[]) value;
+        if (data_type == DataType.STRING)
+            return ((String) value).split(" ");
+        else
+            return (String[]) value;
     }
 
     public void setValue(Boolean a_value) {
@@ -143,13 +152,27 @@ public class SystemClass {
             } else {
                 value = new Boolean(a_value);
             }
-        if (data_type == DataType.INTEGER)
+        else if (data_type == DataType.INTEGER)
             value = new Integer(a_value);
+        else if (data_type == DataType.STRINGS)
+            value = a_value.split(" ");
         else
-          value = a_value;
+            value = a_value;
     }
 
     public void setValue(String[] a_value) {
-        value = a_value;
+        if (data_type == DataType.STRING)
+            value = TextUtils.join(" ", a_value);
+        else
+            value = a_value;
     }
+
+    public void setProp(String a_prop) {
+        prop = a_prop;
+    }
+
+    public void setCtrl(String a_ctrl) {
+        ctrl = a_ctrl;
+    }
+
 }

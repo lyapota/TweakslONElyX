@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class TweaksHelper {
+public class FileHelper {
 
     public final static String FILES_PATH = "/data/local/tmp";
 
@@ -35,7 +35,7 @@ public class TweaksHelper {
         return data;
     }
 
-    private static String getAssetsText(String filename) {
+    public static String getAssetsText(String filename) {
         byte[] data = getAssetsData(filename);
         if (data == null)
             return null;

@@ -37,7 +37,7 @@ if [ ! -w /system ]; then
 fi;
 
 ## set active hotplug
-case $2 in
+case $1 in
 ## get active hotplug
 	0)
 		# Mp-Decision

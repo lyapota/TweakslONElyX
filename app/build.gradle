@@ -4,7 +4,7 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.0.1"
     defaultConfig {
-        applicationId "com.lyapota.tweakslonelyx"
+        applicationId "com.lyapota.tweakslonelyx.tweakslonelyx"
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1

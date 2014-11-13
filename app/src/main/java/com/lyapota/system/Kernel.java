@@ -1,5 +1,6 @@
 package com.lyapota.system;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -9,6 +10,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Kernel extends SystemClass {
+
+    public Kernel(String a_key, String a_path, DataType a_data_type){
+        this(a_key, a_path, a_path, a_data_type, null);
+    }
+
+    public Kernel(String a_key, String a_path_read, String a_path_write, DataType a_data_type){
+        this(a_key, a_path_read, a_path_write, a_data_type, null);
+    }
+
+    public Kernel(String a_key, String a_path, DataType a_data_type, Context a_context){
+        this(a_key, a_path, a_path, a_data_type, a_context);
+    }
+
+    public Kernel(String a_key, String a_path_read, String a_path_write,  DataType a_data_type, Context a_context){
+        super(a_key, a_path_read, a_path_write, a_data_type, a_context);
+    }
 
     @Override
     public void read() {
@@ -75,6 +92,7 @@ public class Kernel extends SystemClass {
                 content = TextUtils.join(" ", getStrings());
                 break;
         }
+
         try {
             f = new File(path_to_write);
             os = new FileOutputStream(f);
@@ -93,6 +111,29 @@ public class Kernel extends SystemClass {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+
+        if (ctrl != null) {
+            try {
+                f = new File(ctrl);
+                os = new FileOutputStream(f);
+                content = "1";
+                byte[] b = content.getBytes();
+                os.write(b);
+
+                os.flush();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (os != null) {
+                        os.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

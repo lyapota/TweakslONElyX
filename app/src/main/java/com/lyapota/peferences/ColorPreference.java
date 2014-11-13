@@ -26,7 +26,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lyapota.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.tweakslonelyx.R;
 
 public class ColorPreference extends Preference {
     private int[] mColorChoices = {};

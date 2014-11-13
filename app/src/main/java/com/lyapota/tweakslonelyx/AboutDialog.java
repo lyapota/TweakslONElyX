@@ -1,4 +1,4 @@
-package com.lyapota.util;
+package com.lyapota.tweakslonelyx;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +18,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
-import com.lyapota.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.tweakslonelyx.R;
 
 public class AboutDialog {
 

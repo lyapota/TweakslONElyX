@@ -12,8 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.lyapota.util.AboutDialog;
-import com.lyapota.util.TweaksHelper;
+import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+import com.lyapota.util.SystemHelper;
 
 
 public class MainActivity extends Activity
@@ -60,7 +60,7 @@ public class MainActivity extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        TweaksHelper.setContext(this);
+        SystemHelper.setContext(this);
     }
 
     @Override

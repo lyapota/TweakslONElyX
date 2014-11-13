@@ -9,12 +9,11 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lyapota.peferences.SliderPreference;
+import com.lyapota.tweakslonelyx.tweakslonelyx.R;
 
 public class PreferencesFragment extends PreferenceFragment {
 
