@@ -11,6 +11,7 @@ public class SystemClass {
     protected String prop = null;
     protected String ctrl = null;
     protected String path_to_read;
+
     protected String path_to_write;
     protected Object value;
     protected DataType data_type;
@@ -22,27 +23,16 @@ public class SystemClass {
     }
 
     public SystemClass(String a_key, String a_path, DataType a_data_type){
-        this(a_key, a_path, a_path, a_data_type, null);
-    }
-
-    public SystemClass(String a_key, String a_path_read, String a_path_write, DataType a_data_type){
-        this(a_key, a_path_read, a_path_write, a_data_type, null);
+        this(a_key, a_path, a_data_type, null);
     }
 
     public SystemClass(String a_key, String a_path, DataType a_data_type, Context a_context){
-        this(a_key, a_path, a_path, a_data_type, a_context);
-    }
-
-    public SystemClass(String a_key, String a_path_read, String a_path_write,  DataType a_data_type, Context a_context){
         this();
 
         key = a_key;
-        path_to_read = a_path_read;
-        path_to_write = a_path_write;
+        path_to_read = a_path;
         data_type = a_data_type;
         context = a_context;
-
-        read();
     }
 
     protected boolean int2bool(int a_value) {
@@ -165,6 +155,10 @@ public class SystemClass {
             value = TextUtils.join(" ", a_value);
         else
             value = a_value;
+    }
+
+    public void setPathToWrite(String a_path) {
+        path_to_write = a_path;
     }
 
     public void setProp(String a_prop) {

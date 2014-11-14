@@ -89,4 +89,6 @@
     <string name="tcp_title">TCP</string>
     <string name="freq_congestion_title">Congestion algorithm</string>
 
+    <string name="applyed_on_the_boot">Kernel tweaks applied on the boot</string>
+
 </resources>

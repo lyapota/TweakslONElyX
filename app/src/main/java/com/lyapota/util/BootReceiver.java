@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+
 public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        SystemHelper.setContext(context);
-
         if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-            Toast.makeText(context, "Kernel tweaks applied", Toast.LENGTH_SHORT).show();
-            Log.d("BootReceiver", "BOOT_COMPLETED");
+            SystemHelper.init(context);
+            if (SystemHelper.setOnBoot()) {
+                Toast.makeText(context, context.getString(R.string.title_section_system), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

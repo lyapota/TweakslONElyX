@@ -46,8 +46,10 @@ public class MainActivity extends Activity
             PreferenceManager.setDefaultValues(this, R.xml.pref_kernel, false);
 
             sp.edit().putBoolean(PREF_FIRST_START, false).apply();
+        } else {
+            SystemHelper.init(this);
+            SystemHelper.getFromDevice();
         }
-
 
         setContentView(R.layout.activity_main);
 
@@ -59,8 +61,6 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        SystemHelper.setContext(this);
     }
 
     @Override
