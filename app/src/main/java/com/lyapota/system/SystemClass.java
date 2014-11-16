@@ -14,7 +14,10 @@ public class SystemClass {
 
     protected String path_to_write;
     protected Object value;
+
+    protected Object prev_value;
     protected DataType data_type;
+    protected DataType pref_type;
     protected Context context;
     protected boolean exists;
     protected boolean writable;
@@ -22,17 +25,21 @@ public class SystemClass {
     SystemClass() {
     }
 
-    public SystemClass(String a_key, String a_path, DataType a_data_type){
-        this(a_key, a_path, a_data_type, null);
+    public SystemClass(String a_key, String a_path, DataType a_data_type, DataType a_pref_type){
+        this(a_key, a_path, a_data_type, a_pref_type, null);
     }
 
-    public SystemClass(String a_key, String a_path, DataType a_data_type, Context a_context){
+    public SystemClass(String a_key, String a_path, DataType a_data_type, DataType a_pref_type, Context a_context){
         this();
 
         key = a_key;
         path_to_read = a_path;
+        path_to_write = a_path;
         data_type = a_data_type;
+        pref_type = a_pref_type;
         context = a_context;
+        value = null;
+        prev_value = null;
     }
 
     protected boolean int2bool(int a_value) {
@@ -77,6 +84,10 @@ public class SystemClass {
         return data_type;
     }
 
+    public DataType getPrefType() {
+        return pref_type;
+    }
+
     public Boolean getBoolean() {
         if (data_type == DataType.INTEGER)
             return int2bool((Integer) value);
@@ -114,17 +125,30 @@ public class SystemClass {
     }
 
     public void setValue(Boolean a_value) {
+        if (a_value == null)
+            return;
+
+        prev_value = value;
+
         if (data_type == DataType.INTEGER)
-            new Integer(bool2int(a_value));
+            value = new Integer(bool2int(a_value));
         else if (data_type == DataType.STRING)
             value = a_value.toString();
         else if (data_type == DataType.YESNO)
             value = bool2yesno(a_value);
         else
             value = a_value;
+
+        if (prev_value == null)
+            prev_value = value;
     }
 
     public void setValue(Integer a_value) {
+        if (a_value == null)
+            return;
+
+        prev_value = value;
+
         if (data_type == DataType.BOOLEAN)
             value = new Boolean(int2bool(a_value));
         else if (data_type == DataType.STRING)
@@ -133,9 +157,17 @@ public class SystemClass {
             value = bool2yesno(int2bool(a_value));
         else
             value = a_value;
+
+        if (prev_value == null)
+            prev_value = value;
     }
 
     public void setValue(String a_value) {
+        if (a_value == null || a_value.length() == 0)
+            return;
+
+        prev_value = value;
+
         if (data_type == DataType.BOOLEAN)
             if (a_value.length() == 1) {
                 value = yesno2bool(a_value);
@@ -148,14 +180,30 @@ public class SystemClass {
             value = a_value.split(" ");
         else
             value = a_value;
+
+        if (prev_value == null)
+            prev_value = value;
     }
 
     public void setValue(String[] a_value) {
+        if (a_value == null || a_value.length == 0)
+            return;
+
+        prev_value = value;
+
         if (data_type == DataType.STRING)
             value = TextUtils.join(" ", a_value);
         else
             value = a_value;
+
+        if (prev_value == null)
+            prev_value = value;
     }
+
+    public String getPrev() {
+        return prev_value.toString();
+    }
+
 
     public void setPathToWrite(String a_path) {
         path_to_write = a_path;

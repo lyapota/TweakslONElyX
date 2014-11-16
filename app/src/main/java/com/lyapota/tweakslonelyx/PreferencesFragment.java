@@ -13,13 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.R;
+import com.lyapota.util.SystemHelper;
 
 public class PreferencesFragment extends PreferenceFragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static boolean in_swith_state = false;
-    private Context context;
 
     public static PreferencesFragment newInstance(int sectionNumber) {
         PreferencesFragment fragment = new PreferencesFragment();
@@ -36,7 +35,6 @@ public class PreferencesFragment extends PreferenceFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-        context = rootView.getContext();
 
         setupSimplePreferencesScreen();
 
@@ -54,31 +52,36 @@ public class PreferencesFragment extends PreferenceFragment {
 
         int section = this.getArguments().getInt(ARG_SECTION_NUMBER);
 
-        switch (section) {
-            case 1:
-                addPreferencesFromResource(R.xml.pref_system);
-                break;
-            case 2:
-                addPreferencesFromResource(R.xml.pref_general);
-                break;
-            case 3:
-                addPreferencesFromResource(R.xml.pref_kernel);
-                break;
-            case 4:
-                addPreferencesFromResource(R.xml.pref_governors);
-                break;
-        }
+        SystemHelper.skipPrefOnChangeValue = true;
+        try {
+            switch (section) {
+                case 1:
+                    addPreferencesFromResource(R.xml.pref_system);
+                    break;
+                case 2:
+                    addPreferencesFromResource(R.xml.pref_general);
+                    break;
+                case 3:
+                    addPreferencesFromResource(R.xml.pref_kernel);
+                    break;
+                case 4:
+                    addPreferencesFromResource(R.xml.pref_governors);
+                    break;
+            }
 
-        for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
-            Preference preference = getPreferenceScreen().getPreference(i);
-            if (preference instanceof PreferenceCategory) {
-                PreferenceCategory category = (PreferenceCategory) preference;
-                for (int j = 0; j < category.getPreferenceCount(); j++) {
-                    preference = category.getPreference(j);
+            for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
+                Preference preference = getPreferenceScreen().getPreference(i);
+                if (preference instanceof PreferenceCategory) {
+                    PreferenceCategory category = (PreferenceCategory) preference;
+                    for (int j = 0; j < category.getPreferenceCount(); j++) {
+                        preference = category.getPreference(j);
+                        bindPreferenceSummaryToValue(preference);
+                    }
+                } else
                     bindPreferenceSummaryToValue(preference);
-                }
-            } else
-                bindPreferenceSummaryToValue(preference);
+            }
+        } finally {
+            SystemHelper.skipPrefOnChangeValue = false;
         }
     }
 
@@ -98,6 +101,9 @@ public class PreferencesFragment extends PreferenceFragment {
             } else if (preference instanceof EditTextPreference) {
                 preference.setSummary(value.toString());
             }
+
+            if (!SystemHelper.skipPrefOnChangeValue)
+                SystemHelper.putToDevice(preference, value);
 
             return true;
         }

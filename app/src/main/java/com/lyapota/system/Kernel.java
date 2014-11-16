@@ -3,20 +3,25 @@ package com.lyapota.system;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.lyapota.util.Shell;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Kernel extends SystemClass {
 
-    public Kernel(String a_key, String a_path, DataType a_data_type){
-        this(a_key, a_path, a_data_type, null);
+    public Kernel(String a_key, String a_path, DataType a_data_type, DataType a_pref_type){
+        this(a_key, a_path, a_data_type, a_pref_type, null);
     }
 
-    public Kernel(String a_key, String a_path, DataType a_data_type, Context a_context){
-        super(a_key, a_path, a_data_type, a_context);
+    public Kernel(String a_key, String a_path, DataType a_data_type, DataType a_pref_type, Context a_context){
+        super(a_key, a_path, a_data_type, a_pref_type, a_context);
     }
 
     @Override
@@ -28,34 +33,39 @@ public class Kernel extends SystemClass {
             exists = f.exists();
 
             if (exists) {
-                writable = f.canWrite();
+                writable = true;
 
                 InputStream is = new FileInputStream(f);
-                byte[] b = new byte[is.available()];
-                is.read(b);
+                DataInputStream in = new DataInputStream(is);
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+                String b_str = br.readLine();
+
+                in.close();
 
                 switch (data_type) {
                     case BOOLEAN:
-                        if (b.length > 0)
-                            setValue(new String(b));
+                        if (b_str.length() > 0)
+                            setValue(new Boolean(b_str));
                         else
                             setValue(new Boolean(false));
                         break;
                     case INTEGER:
-                        if (b.length > 0)
-                            setValue(new String(b));
+                        if (b_str.length() > 0)
+                            setValue(new Integer(b_str));
                         else
                             setValue(new Integer(0));
                         break;
-                    case YESNO: STRING:
-                        if (b.length > 0)
-                            setValue(new String(b));
+                    case YESNO:
+                    case STRING:
+                        if (b_str.length() > 0)
+                            setValue(b_str);
                         else
                             setValue(new String(""));
                         break;
                     case STRINGS:
-                        if (b.length > 0)
-                            setValue((new String(b)).split(" "));
+                        if (b_str.length() > 0)
+                            setValue(b_str.split(" "));
                         else
                             setValue(new String[0]);
                         break;
@@ -69,15 +79,16 @@ public class Kernel extends SystemClass {
 
     @Override
     public void write() {
-        File f;
-        FileOutputStream os = null;
         String content = "";
 
         if (!exists || !writable)
             return;
 
         switch (data_type) {
-            case BOOLEAN: INTEGER: YESNO: STRING:
+            case BOOLEAN:
+            case INTEGER:
+            case YESNO:
+            case STRING:
                 content = getString();
                 break;
             case STRINGS:
@@ -85,48 +96,23 @@ public class Kernel extends SystemClass {
                 break;
         }
 
-        try {
-            f = new File(path_to_write);
-            os = new FileOutputStream(f);
-
-            byte[] b = content.getBytes();
-            os.write(b);
-
-            os.flush();
-            os.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (key.equals("kpref_cpu_uv")) {
+            content =((Integer)(getInteger() - (new Integer(getPrev())))).toString();
         }
 
-        if (ctrl != null) {
-            try {
-                f = new File(ctrl);
-                os = new FileOutputStream(f);
-                content = "1";
-                byte[] b = content.getBytes();
-                os.write(b);
+        try {
+            Shell.sudo("echo \"" + content + "\" > "  + path_to_write);
 
-                os.flush();
-                os.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
+            if (ctrl != null) {
                 try {
-                    if (os != null) {
-                        os.close();
-                    }
-                } catch (IOException e) {
+                    Shell.sudo("echo \"1\" > " + ctrl);
+                } catch (Shell.ShellException e) {
                     e.printStackTrace();
                 }
             }
+
+        } catch (Shell.ShellException e) {
+            e.printStackTrace();
         }
     }
 

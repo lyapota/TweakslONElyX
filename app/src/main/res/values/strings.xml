@@ -31,10 +31,10 @@
     <string name="pref_description_crtoff_animation">Enable crtoff animation</string>
 
     <string name="pref_title_safe_volume">Safe volume</string>
-    <string name="pref_description_safe_volume">Enable safe volume dialog</string>
+    <string name="pref_description_safe_volume">Disable safe volume dialog</string>
 
     <string name="pref_title_powersave_notification">Powersave notification</string>
-    <string name="pref_description_powersave_notification">Enable powersave notification</string>
+    <string name="pref_description_powersave_notification">Disable powersave notification</string>
 
     <string name="pref_title_s2s">Sweep to Sleep</string>
 
@@ -53,13 +53,6 @@
     <string name="pref_description_high_perf_mode">Support configuration with Class AB amplifier for headphones</string>
 
     <string name="dimmer_title">Dimmer mod</string>
-    <string name="pref_dimmer_message">Set custom backlight dimmer values</string>
-
-    <string name="pref_title_color_cal">LCD Color control</string>
-    <string name="reset_button">Reset</string>
-    <string name="color_red_title">Red</string>
-    <string name="color_green_title">Green</string>
-    <string name="color_blue_title">Blue</string>
 
     <!-- About -->
     <string name="colorpicker_menu_about">About</string>
@@ -74,12 +67,6 @@
     ]]></string>
 
     <string name="pref_hotplug_title">Hotplug</string>
-
-    <string name="headphone_title">HeadPhone</string>
-    <string name="speaker_title">Speaker</string>
-    <string name="microphone_title">Microphone</string>
-    <string name="camera_microphone_title">Camera microphone</string>
-    <string name="pref_title_gun_control">Audio Gun control</string>
 
     <string name="title_section_governors">Governors</string>
     <string name="freq_governor_title">Frequency governor</string>

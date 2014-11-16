@@ -39,7 +39,7 @@ fi;
 ## set active hotplug
 case $1 in
 ## get active hotplug
-	0)
+	@)
 		# Mp-Decision
 		if [ "$PID_MPDEC" -gt "0" ]; then
 			echo "1";

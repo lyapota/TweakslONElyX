@@ -18,7 +18,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
-import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.R;
 
 public class AboutDialog {
 

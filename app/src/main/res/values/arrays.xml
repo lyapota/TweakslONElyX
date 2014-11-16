@@ -16,8 +16,8 @@
     </string-array>
 
     <string-array name="pref_dalvik_optimization_values">
-        <item>0</item>
-        <item>1</item>
+        <item>v=n,o=v,m=y,u=n</item>
+        <item>v=a,o=v,m=y,u=n</item>
     </string-array>
 
     <string-array name="pref_s2s_titles">
@@ -96,12 +96,17 @@
         <item>20</item>
     </string-array>
 
-    <string-array name="dimmer_summaries">
-        <item>dark</item>
-        <item>medium</item>
+    <string-array name="pref_dimmer_titles">
         <item>stock</item>
+        <item>medium</item>
+        <item>dark</item>
     </string-array>
 
+    <string-array name="pref_dimmer_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
     <string-array name="pref_hotplug_titles">
         <item>MPDecision</item>
@@ -115,29 +120,6 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-    </string-array>
-
-    <string-array name="default_color_choice_values" translatable="false">
-        <item>#33b5e5</item>
-        <item>#aa66cc</item>
-        <item>#99cc00</item>
-        <item>#ffbb33</item>
-        <item>#ff4444</item>
-        <item>#0099cc</item>
-        <item>#9933cc</item>
-        <item>#669900</item>
-        <item>#ff8800</item>
-        <item>#cc0000</item>
-        <item>#ffffff</item>
-        <item>#eeeeee</item>
-        <item>#cccccc</item>
-        <item>#888888</item>
-        <item>#444444</item>
-    </string-array>
-
-    <string-array name="homescreen_color_choice_values" translatable="false">
-        <item>#ffffff</item>
-        <item>#000000</item>
     </string-array>
 
     <string-array name="pref_cpu_freq_governor_titles" />

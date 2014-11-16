@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.MODE_WORLD_WRITEABLE;
+
 
 public class FileHelper {
 
@@ -39,27 +42,26 @@ public class FileHelper {
         byte[] data = getAssetsData(filename);
         if (data == null)
             return null;
-        return data.toString();
+        return new String(data);
     }
 
     private static File extractExecutable(String filename) {
         try {
-            File file = new File(FILES_PATH, filename);
-            byte[] data = getAssetsData(filename);
+            File file = new File(context.getFilesDir().getAbsolutePath() + "/" + filename);
+            if (file.exists())
+                return file;
 
+            byte[] data = getAssetsData(filename);
             if (data == null)
                 return null;
 
-            if (file.exists())
-                file.delete();
-
-            FileOutputStream outputStream = new FileOutputStream(file);
+            FileOutputStream outputStream = context.openFileOutput(filename, MODE_PRIVATE);
             outputStream.write(data);
 
             outputStream.flush();
             outputStream.close();
 
-            file.setExecutable(true);
+            file.setExecutable(true, false);
 
             return file;
         } catch (IOException e) {
@@ -82,8 +84,7 @@ public class FileHelper {
         String result_str = null;
 
         if (file != null) {
-            result_str = run(FILES_PATH + '/' + filename, params);
-            file.delete();
+            result_str = run(context.getFilesDir().getAbsolutePath() + '/' + filename, params);
         }
         return result_str;
     }

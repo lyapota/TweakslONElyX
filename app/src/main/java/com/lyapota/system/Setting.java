@@ -7,12 +7,12 @@ import android.text.TextUtils;
 
 public class Setting extends SystemClass {
 
-    public Setting(String a_key, String a_path, DataType a_data_type){
-        this(a_key, a_path, a_data_type, null);
+    public Setting(String a_key, String a_path, DataType a_data_type, DataType a_pref_type){
+        this(a_key, a_path, a_data_type, a_pref_type, null);
     }
 
-    public Setting(String a_key, String a_path, DataType a_data_type, Context a_context){
-        super(a_key, a_path, a_data_type, a_context);
+    public Setting(String a_key, String a_path, DataType a_data_type, DataType a_pref_type, Context a_context){
+        super(a_key, a_path, a_data_type, a_pref_type, a_context);
     }
 
     @Override
@@ -20,10 +20,12 @@ public class Setting extends SystemClass {
         ContentResolver resolver = context.getContentResolver();
         try {
             switch (data_type) {
-                case BOOLEAN: INTEGER:
+                case BOOLEAN:
+                case INTEGER:
                     setValue(Settings.System.getInt(resolver, path_to_read));
                     break;
-                case YESNO: STRING:
+                case YESNO:
+                case STRING:
                     setValue(Settings.System.getString(resolver, path_to_read));
                     break;
                 case STRINGS:
@@ -33,7 +35,7 @@ public class Setting extends SystemClass {
             writable = true;
         } catch (Settings.SettingNotFoundException e) {
             exists = false;
-            writable = false;
+            writable = true;
         }
     }
 
@@ -41,19 +43,22 @@ public class Setting extends SystemClass {
     public void write() {
         ContentResolver resolver = context.getContentResolver();
 
-        Settings.System.putInt(resolver, "", 0);
         try {
             switch (data_type) {
-                case BOOLEAN: INTEGER:
+                case BOOLEAN:
+                case INTEGER:
                     Settings.System.putInt(resolver, path_to_write, getInteger());
                     break;
-                case YESNO: STRING:
+                case YESNO:
+                case STRING:
                     Settings.System.putString(resolver, path_to_write, getString());
                     break;
                 case STRINGS:
                     Settings.System.putString(resolver, path_to_write, TextUtils.join(" ", getStrings()));
                     break;
             }
+            exists = true;
+            writable = true;
        } catch (Exception e) {
           e.printStackTrace();
         }

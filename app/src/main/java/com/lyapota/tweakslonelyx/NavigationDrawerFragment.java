@@ -22,9 +22,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.R;
 
-import static com.lyapota.tweakslonelyx.tweakslonelyx.R.*;
+import static com.lyapota.tweakslonelyx.R.*;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

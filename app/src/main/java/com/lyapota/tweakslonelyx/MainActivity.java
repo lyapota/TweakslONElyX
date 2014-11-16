@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.lyapota.tweakslonelyx.tweakslonelyx.R;
 import com.lyapota.util.SystemHelper;
 
 
@@ -46,10 +45,10 @@ public class MainActivity extends Activity
             PreferenceManager.setDefaultValues(this, R.xml.pref_kernel, false);
 
             sp.edit().putBoolean(PREF_FIRST_START, false).apply();
-        } else {
-            SystemHelper.init(this);
-            SystemHelper.getFromDevice();
         }
+
+        SystemHelper.init(this);
+        SystemHelper.getFromDevice();
 
         setContentView(R.layout.activity_main);
 

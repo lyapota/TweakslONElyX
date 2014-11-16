@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.lyapota.tweakslonelyx.tweakslonelyx.R;
+import com.lyapota.tweakslonelyx.R;
 
 public class BootReceiver extends BroadcastReceiver {
 

@@ -48,28 +48,20 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_edp" />
 
-    <com.lyapota.peferences.SliderPreference
-        android:defaultValue="2"
-        android:dialogMessage="@string/pref_dimmer_message"
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_dimmer_titles"
+        android:entryValues="@array/pref_dimmer_values"
         android:key="kpref_dimmer"
-        android:summary="@array/dimmer_summaries"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
         android:title="@string/dimmer_title" />
-
-    <com.lyapota.peferences.DisplayGamma
-        android:defaultValue="255 255 255"
-        android:key="kpref_color_cal"
-        android:title="@string/pref_title_color_cal" />
 
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="kpref_high_perf_mode"
         android:summary="@string/pref_description_high_perf_mode"
         android:title="@string/pref_title_high_perf_mode" />
-
-    <com.lyapota.peferences.DisplayGun
-        android:defaultValue="0 0 0 0"
-        android:key="kpref_gun_control"
-        android:title="@string/pref_title_gun_control" />
 
     <ListPreference
         android:defaultValue="1"

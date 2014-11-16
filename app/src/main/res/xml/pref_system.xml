@@ -18,7 +18,7 @@
     <ListPreference
         android:key="pref_dalvik_optimization"
         android:title="@string/pref_title_dalvik_optimization"
-        android:defaultValue="1"
+        android:defaultValue="v=a,o=v,m=y,u=n"
         android:entries="@array/pref_dalvik_optimization_titles"
         android:entryValues="@array/pref_dalvik_optimization_values"
         android:negativeButtonText="@null"
