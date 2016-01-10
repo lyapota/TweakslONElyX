@@ -1,26 +1,32 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <CheckBoxPreference
+        android:key="pref_apm"
+        android:title="@string/pref_title_apm"
+        android:summary="@string/pref_description_apm"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
         android:key="pref_longpress_backkey"
         android:title="@string/pref_title_longpress_backkey"
         android:summary="@string/pref_description_longpress_backkey"
         android:defaultValue="false" />
 
     <ListPreference
-        android:key="pref_recentapp_style"
-        android:title="@string/pref_title_recentapp_style"
+        android:key="pref_vol_ctrl_cursor"
+        android:title="@string/pref_title_vol_ctrl_cursor"
         android:defaultValue="1"
-        android:entries="@array/pref_recentapp_style_titles"
-        android:entryValues="@array/pref_recentapp_style_values"
+        android:entries="@array/pref_vol_ctrl_cursor_titles"
+        android:entryValues="@array/pref_vol_ctrl_cursor_values"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
     <ListPreference
-        android:key="pref_dalvik_optimization"
-        android:title="@string/pref_title_dalvik_optimization"
-        android:defaultValue="v=a,o=v,m=y,u=n"
-        android:entries="@array/pref_dalvik_optimization_titles"
-        android:entryValues="@array/pref_dalvik_optimization_values"
+        android:key="pref_mtp_def"
+        android:title="@string/pref_title_mtp_def"
+        android:defaultValue="charged,adb"
+        android:entries="@array/pref_mtp_def_titles"
+        android:entryValues="@array/pref_mtp_def_values"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 

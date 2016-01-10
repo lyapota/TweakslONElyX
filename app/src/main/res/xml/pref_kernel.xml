@@ -39,23 +39,13 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_cpu_oc" />
 
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_edp_titles"
-        android:entryValues="@array/pref_edp_values"
-        android:key="kpref_edp"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_edp" />
 
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_dimmer_titles"
-        android:entryValues="@array/pref_dimmer_values"
+    <CheckBoxPreference
+        android:defaultValue="false"
         android:key="kpref_dimmer"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
+        android:summary="@string/pref_description_dimmer"
         android:title="@string/dimmer_title" />
+
 
     <CheckBoxPreference
         android:defaultValue="false"
@@ -63,13 +53,5 @@
         android:summary="@string/pref_description_high_perf_mode"
         android:title="@string/pref_title_high_perf_mode" />
 
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/pref_hotplug_titles"
-        android:entryValues="@array/pref_hotplug_values"
-        android:key="kpref_hotplug"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_hotplug_title" />
 
 </PreferenceScreen>

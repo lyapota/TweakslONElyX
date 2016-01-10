@@ -3,7 +3,7 @@
 
     <string name="app_name">Tweaks lONElyX</string>
     <string name="title_section_system">System Tweaks</string>
-    <string name="title_section_general">General Tweaks</string>
+    <string name="title_section_ui">UI Tweaks</string>
     <string name="title_section_kernel">Kernel Tweaks</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,24 +17,19 @@
     <string name="pref_title_longpress_backkey">Longpress BackKey</string>
     <string name="pref_description_longpress_backkey">Longpress back key  - kill app</string>
 
-    <string name="pref_title_dalvik_optimization">Dalvik optimization</string>
+    <string name="pref_title_vol_ctrl_cursor">Volume control cursor</string>
 
-    <string name="pref_title_recentapp_style">Recent apps style</string>
+    <string name="pref_title_double_tap_sleep">Double tap to sleep</string>
+    <string name="pref_description_double_tap_sleep">Double tap to sleep on the StatusBar</string>
 
-    <string name="pref_title_allow_prism_landscape">Prism landscape</string>
-    <string name="pref_description_allow_prism_landscape">Allow prism landscape</string>
+    <string name="pref_title_knock_knock_sleep">Knock knock to sleep</string>
+    <string name="pref_description_knock_knock_sleep">Double tap to sleep on the LockScreen</string>
 
-    <string name="pref_title_allow_360_rotation">360\% rotation</string>
-    <string name="pref_description_allow_360_rotation">Allow 360\% rotation</string>
+    <string name="pref_title_qs_pulldown">PullDown quick settings</string>
+    <string name="pref_description_qs_pulldown">Pull down right corner notification area for QS</string>
 
-    <string name="pref_title_crtoff_animation">CRT Off animation</string>
-    <string name="pref_description_crtoff_animation">Enable crtoff animation</string>
-
-    <string name="pref_title_safe_volume">Safe volume</string>
-    <string name="pref_description_safe_volume">Disable safe volume dialog</string>
-
-    <string name="pref_title_powersave_notification">Powersave notification</string>
-    <string name="pref_description_powersave_notification">Disable powersave notification</string>
+    <string name="pref_title_recentapp_clear_all">Recents clear All</string>
+    <string name="pref_description_recentapp_clear_all">Recent app Clear All button</string>
 
     <string name="pref_title_s2s">Sweep to Sleep</string>
 
@@ -61,21 +56,15 @@
     <string name="about_body"><![CDATA[
         <b>Tweaks lONElyX</b><br>
         Version %s<br><br>
-        <a href="http://forum.xda-developers.com/htc-one-m8/orig-development/kernel-lonelyx-001-t2881605">HTC One(M8) Kernel</a><br><br>
+        <a href="http://forum.xda-developers.com/htc-one-m8/development/rom-htc-one-m8-gpe-stock-custom-aroma-t3254245">HTC One(M8) GPE ROM</a><br><br>
         <a href="http://forum.xda-developers.com/member.php?u=1148003">By lyapota (XDA member)</a><br><br>
 
     ]]></string>
 
-    <string name="pref_hotplug_title">Hotplug</string>
-
-    <string name="title_section_governors">Governors</string>
-    <string name="freq_governor_title">Frequency governor</string>
-    <string name="cpu_title">CPU</string>
-    <string name="gpu_title">GPU</string>
-    <string name="dummy_string">Dummy</string>
-    <string name="tcp_title">TCP</string>
-    <string name="freq_congestion_title">Congestion algorithm</string>
-
     <string name="applyed_on_the_boot">Kernel tweaks applied on the boot</string>
+    <string name="pref_title_apm">APM</string>
+    <string name="pref_description_apm">Advanced Power Menu</string>
+    <string name="pref_title_mtp_def">MTP Default</string>
+    <string name="pref_description_dimmer">Autodimmer mod</string>
 
 </resources>

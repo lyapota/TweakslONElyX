@@ -1,7 +1,6 @@
 package com.lyapota.tweakslonelyx;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lyapota.tweakslonelyx.R;
 import com.lyapota.util.SystemHelper;
 
 public class PreferencesFragment extends PreferenceFragment {
@@ -59,13 +57,10 @@ public class PreferencesFragment extends PreferenceFragment {
                     addPreferencesFromResource(R.xml.pref_system);
                     break;
                 case 2:
-                    addPreferencesFromResource(R.xml.pref_general);
+                    addPreferencesFromResource(R.xml.pref_ui);
                     break;
                 case 3:
                     addPreferencesFromResource(R.xml.pref_kernel);
-                    break;
-                case 4:
-                    addPreferencesFromResource(R.xml.pref_governors);
                     break;
             }
 

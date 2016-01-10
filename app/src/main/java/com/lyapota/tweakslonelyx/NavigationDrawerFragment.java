@@ -22,8 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.lyapota.tweakslonelyx.R;
-
 import static com.lyapota.tweakslonelyx.R.*;
 
 /**
@@ -110,9 +108,8 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_section_system),
-                        getString(R.string.title_section_general),
+                        getString(R.string.title_section_ui),
                         getString(R.string.title_section_kernel),
-                        getString(string.title_section_governors),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

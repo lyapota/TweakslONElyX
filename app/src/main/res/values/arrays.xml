@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pref_recentapp_style_titles">
-        <item>AOSP</item>
-        <item>Sense</item>
+
+    <string-array name="pref_vol_ctrl_cursor_titles">
+        <item>stock</item>
+        <item>vol+ cursor left / vol- cursor right</item>
+        <item>vol+ cursor right / vol- cursor left</item>
     </string-array>
 
-    <string-array name="pref_recentapp_style_values">
+    <string-array name="pref_vol_ctrl_cursor_values">
         <item>0</item>
         <item>1</item>
+        <item>2</item>
     </string-array>
 
-    <string-array name="pref_dalvik_optimization_titles">
-        <item>Disable optimization</item>
-        <item>Enable optimization</item>
+    <string-array name="pref_mtp_def_titles">
+        <item>Charged</item>
+        <item>MTP</item>
     </string-array>
 
-    <string-array name="pref_dalvik_optimization_values">
-        <item>v=n,o=v,m=y,u=n</item>
-        <item>v=a,o=v,m=y,u=n</item>
+    <string-array name="pref_mtp_def_values">
+        <item>charged,adb</item>
+        <item>mtp,adb</item>
     </string-array>
 
     <string-array name="pref_s2s_titles">
@@ -79,54 +82,5 @@
         <item>2726400</item>
         <item>2803200</item>
     </string-array>
-
-    <string-array name="pref_edp_titles">
-        <item>OFF</item>
-        <item>5 consecutive queries</item>
-        <item>10 consecutive queries</item>
-        <item>15 consecutive queries</item>
-        <item>20 consecutive queries</item>
-    </string-array>
-
-    <string-array name="pref_edp_values">
-        <item>0</item>
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-    </string-array>
-
-    <string-array name="pref_dimmer_titles">
-        <item>stock</item>
-        <item>medium</item>
-        <item>dark</item>
-    </string-array>
-
-    <string-array name="pref_dimmer_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string-array name="pref_hotplug_titles">
-        <item>MPDecision</item>
-        <item>CPUQuiet</item>
-        <item>Intelli</item>
-        <item>Mako</item>
-    </string-array>
-
-    <string-array name="pref_hotplug_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-
-    <string-array name="pref_cpu_freq_governor_titles" />
-    <string-array name="pref_cpu_freq_governor_values" />
-    <string-array name="pref_gpu_freq_governor_titles" />
-    <string-array name="pref_gpu_freq_governor_values" />
-    <string-array name="pref_congestion_algorithm_titles" />
-    <string-array name="pref_congestion_algorithm_values" />
 
 </resources>

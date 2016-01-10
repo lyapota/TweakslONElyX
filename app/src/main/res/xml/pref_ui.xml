@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="pref_double_tap_sleep"
+        android:title="@string/pref_title_double_tap_sleep"
+        android:summary="@string/pref_description_double_tap_sleep"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_qs_pulldown"
+        android:title="@string/pref_title_qs_pulldown"
+        android:summary="@string/pref_description_qs_pulldown"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_knock_knock_sleep"
+        android:title="@string/pref_title_knock_knock_sleep"
+        android:summary="@string/pref_description_knock_knock_sleep"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_recentapp_clear_all"
+        android:title="@string/pref_title_recentapp_clear_all"
+        android:summary="@string/pref_description_recentapp_clear_all"
+        android:defaultValue="false" />
+
+</PreferenceScreen>

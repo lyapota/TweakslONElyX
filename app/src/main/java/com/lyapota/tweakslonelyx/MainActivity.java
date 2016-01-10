@@ -41,7 +41,7 @@ public class MainActivity extends Activity
         boolean isFirstStart = sp.getBoolean(PREF_FIRST_START, true);
         if (isFirstStart) {
             PreferenceManager.setDefaultValues(this, R.xml.pref_system, false);
-            PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_ui, false);
             PreferenceManager.setDefaultValues(this, R.xml.pref_kernel, false);
 
             sp.edit().putBoolean(PREF_FIRST_START, false).apply();
@@ -78,15 +78,11 @@ public class MainActivity extends Activity
                 mShowActionReboot = false;
                 break;
             case 2:
-                mTitle = getString(R.string.title_section_general);
+                mTitle = getString(R.string.title_section_ui);
                 mShowActionReboot = false;
                 break;
             case 3:
                 mTitle = getString(R.string.title_section_kernel);
-                mShowActionReboot = true;
-                break;
-            case 4:
-                mTitle = getString(R.string.title_section_governors);
                 mShowActionReboot = true;
                 break;
         }
